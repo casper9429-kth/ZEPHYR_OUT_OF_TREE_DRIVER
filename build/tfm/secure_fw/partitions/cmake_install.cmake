@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install")
+  set(CMAKE_INSTALL_PREFIX "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,51 +39,51 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/lib/runtime/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/lib/runtime/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/crypto/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/crypto/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/initial_attestation/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/initial_attestation/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/protected_storage/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/protected_storage/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/internal_trusted_storage/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/internal_trusted_storage/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/platform/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/platform/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/firmware_update/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/firmware_update/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/ns_agent_tz/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/ns_agent_tz/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/ns_agent_mailbox/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/ns_agent_mailbox/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/partitions/idle_partition/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/tfm/secure_fw/partitions/idle_partition/cmake_install.cmake")
 endif()
 

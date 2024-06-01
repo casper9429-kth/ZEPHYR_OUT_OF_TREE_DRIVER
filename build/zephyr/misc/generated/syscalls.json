@@ -129,54 +129,6 @@
     ],
     [
         [
-            "int rtio_cqe_get_mempool_buffer",
-            "const struct rtio *r, struct rtio_cqe *cqe,\n\t\t\t\t\t  uint8_t **buff, uint32_t *buff_len"
-        ],
-        "rtio.h",
-        true
-    ],
-    [
-        [
-            "void rtio_release_buffer",
-            "struct rtio *r, void *buff, uint32_t buff_len"
-        ],
-        "rtio.h",
-        true
-    ],
-    [
-        [
-            "int rtio_sqe_cancel",
-            "struct rtio_sqe *sqe"
-        ],
-        "rtio.h",
-        true
-    ],
-    [
-        [
-            "int rtio_sqe_copy_in_get_handles",
-            "struct rtio *r, const struct rtio_sqe *sqes,\n\t\t\t\t\t   struct rtio_sqe **handle, size_t sqe_count"
-        ],
-        "rtio.h",
-        true
-    ],
-    [
-        [
-            "int rtio_cqe_copy_out",
-            "struct rtio *r,\n\t\t\t\tstruct rtio_cqe *cqes,\n\t\t\t\tsize_t cqe_count,\n\t\t\t\tk_timeout_t timeout"
-        ],
-        "rtio.h",
-        true
-    ],
-    [
-        [
-            "int rtio_submit",
-            "struct rtio *r, uint32_t wait_count"
-        ],
-        "rtio.h",
-        true
-    ],
-    [
-        [
             "int entropy_get_entropy",
             "const struct device *dev,\n\t\t\t\t  uint8_t *buffer,\n\t\t\t\t  uint16_t length"
         ],
@@ -3781,6 +3733,54 @@
             "int nfds, zsock_fd_set *readfds,\n\t\t\t   zsock_fd_set *writefds,\n\t\t\t   zsock_fd_set *exceptfds,\n\t\t\t   struct zsock_timeval *timeout"
         ],
         "socket_select.h",
+        false
+    ],
+    [
+        [
+            "int rtio_cqe_get_mempool_buffer",
+            "const struct rtio *r, struct rtio_cqe *cqe,\n\t\t\t\t\t  uint8_t **buff, uint32_t *buff_len"
+        ],
+        "rtio.h",
+        false
+    ],
+    [
+        [
+            "void rtio_release_buffer",
+            "struct rtio *r, void *buff, uint32_t buff_len"
+        ],
+        "rtio.h",
+        false
+    ],
+    [
+        [
+            "int rtio_sqe_cancel",
+            "struct rtio_sqe *sqe"
+        ],
+        "rtio.h",
+        false
+    ],
+    [
+        [
+            "int rtio_sqe_copy_in_get_handles",
+            "struct rtio *r, const struct rtio_sqe *sqes,\n\t\t\t\t\t   struct rtio_sqe **handle, size_t sqe_count"
+        ],
+        "rtio.h",
+        false
+    ],
+    [
+        [
+            "int rtio_cqe_copy_out",
+            "struct rtio *r,\n\t\t\t\tstruct rtio_cqe *cqes,\n\t\t\t\tsize_t cqe_count,\n\t\t\t\tk_timeout_t timeout"
+        ],
+        "rtio.h",
+        false
+    ],
+    [
+        [
+            "int rtio_submit",
+            "struct rtio *r, uint32_t wait_count"
+        ],
+        "rtio.h",
         false
     ],
     [

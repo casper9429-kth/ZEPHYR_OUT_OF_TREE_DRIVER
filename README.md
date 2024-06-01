@@ -3,8 +3,8 @@ This repo have the goal to learn and show how to add a out of tree driver in zep
 
 # Primary Sources:
 * [Adding an Out-of-Tree sensor driver to Zephyr](https://blog.golioth.io/adding-an-out-of-tree-sensor-driver-to-zephyr/)
-* [ZEPHYR:Devicetree HOWTOs](https://docs.zephyrproject.org/latest/build/dts/howtos.html#get-devicetree-outputs)
-
+* [ZEPHYR: Devicetree HOWTOs](https://docs.zephyrproject.org/latest/build/dts/howtos.html#get-devicetree-outputs)
+* [ZEPHYR: Sensor Shell Example](https://github.com/zephyrproject-rtos/zephyr/tree/main/samples/sensor/sensor_shell)
 
 
 # STATUS:

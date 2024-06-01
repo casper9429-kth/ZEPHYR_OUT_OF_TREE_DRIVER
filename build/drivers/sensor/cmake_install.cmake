@@ -1,4 +1,4 @@
-# Install script for directory: /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/drivers/sensor
+# Install script for directory: /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/drivers/sensor
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/drivers/sensor/pyd1598/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/drivers/sensor/pyd1598/cmake_install.cmake")
 endif()
 

@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/CMakeFiles/tfm"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/CMakeFiles/tfm"
 		},
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/CMakeFiles/tfm.rule"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/CMakeFiles/tfm.rule"
 		},
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/CMakeFiles/tfm-complete.rule"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/CMakeFiles/tfm-complete.rule"
 		},
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-build.rule"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-build.rule"
 		},
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-configure.rule"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-configure.rule"
 		},
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-download.rule"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-download.rule"
 		},
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-install.rule"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-install.rule"
 		},
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-mkdir.rule"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-mkdir.rule"
 		},
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-patch.rule"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-patch.rule"
 		},
 		{
-			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-update.rule"
+			"file" : "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-update.rule"
 		}
 	],
 	"target" : 

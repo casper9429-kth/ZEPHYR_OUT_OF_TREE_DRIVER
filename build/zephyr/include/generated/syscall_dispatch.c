@@ -69,30 +69,6 @@ uintptr_t z_mrsh_sys_csrand_get(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_rtio_cqe_get_mempool_buffer(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_rtio_release_buffer(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_rtio_sqe_cancel(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_rtio_sqe_copy_in_get_handles(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_rtio_cqe_copy_out(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_rtio_submit(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_entropy_get_entropy(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
@@ -656,12 +632,6 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_SYS_RAND32_GET] = z_mrsh_sys_rand32_get,
 	[K_SYSCALL_SYS_RAND_GET] = z_mrsh_sys_rand_get,
 	[K_SYSCALL_SYS_CSRAND_GET] = z_mrsh_sys_csrand_get,
-	[K_SYSCALL_RTIO_CQE_GET_MEMPOOL_BUFFER] = z_mrsh_rtio_cqe_get_mempool_buffer,
-	[K_SYSCALL_RTIO_RELEASE_BUFFER] = z_mrsh_rtio_release_buffer,
-	[K_SYSCALL_RTIO_SQE_CANCEL] = z_mrsh_rtio_sqe_cancel,
-	[K_SYSCALL_RTIO_SQE_COPY_IN_GET_HANDLES] = z_mrsh_rtio_sqe_copy_in_get_handles,
-	[K_SYSCALL_RTIO_CQE_COPY_OUT] = z_mrsh_rtio_cqe_copy_out,
-	[K_SYSCALL_RTIO_SUBMIT] = z_mrsh_rtio_submit,
 	[K_SYSCALL_ENTROPY_GET_ENTROPY] = z_mrsh_entropy_get_entropy,
 	[K_SYSCALL_GPIO_PIN_INTERRUPT_CONFIGURE] = z_mrsh_gpio_pin_interrupt_configure,
 	[K_SYSCALL_GPIO_PIN_CONFIGURE] = z_mrsh_gpio_pin_configure,

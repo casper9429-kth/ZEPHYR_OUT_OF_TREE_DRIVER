@@ -130,8 +130,6 @@ ztest :
  {
   KEEP(*(".dbg_thread_info"));
  } > FLASH
- sensor_info_area : SUBALIGN(4) { _sensor_info_list_start = .; KEEP(*(SORT_BY_NAME(._sensor_info.static.*))); _sensor_info_list_end = .; } > FLASH
- sensor_decoder_api_area : SUBALIGN(4) { _sensor_decoder_api_list_start = .; KEEP(*(SORT_BY_NAME(._sensor_decoder_api.static.*))); _sensor_decoder_api_list_end = .; } > FLASH
  symbol_to_keep : ALIGN_WITH_INPUT
  {
   __symbol_to_keep_start = .;
@@ -240,10 +238,6 @@ __ramfunc_load_start = LOADADDR(.ramfunc);
  k_queue_area : ALIGN_WITH_INPUT SUBALIGN(4) { _k_queue_list_start = .; *(SORT_BY_NAME(._k_queue.static.*)); _k_queue_list_end = .; } > RAM AT > FLASH
  k_condvar_area : ALIGN_WITH_INPUT SUBALIGN(4) { _k_condvar_list_start = .; *(SORT_BY_NAME(._k_condvar.static.*)); _k_condvar_list_end = .; } > RAM AT > FLASH
  net_buf_pool_area : ALIGN_WITH_INPUT SUBALIGN(4) { _net_buf_pool_list_start = .; KEEP(*(SORT_BY_NAME(._net_buf_pool.static.*))); _net_buf_pool_list_end = .; } > RAM AT > FLASH
- rtio_area : ALIGN_WITH_INPUT SUBALIGN(4) { _rtio_list_start = .; KEEP(*(SORT_BY_NAME(._rtio.static.*))); _rtio_list_end = .; } > RAM AT > FLASH
- rtio_iodev_area : ALIGN_WITH_INPUT SUBALIGN(4) { _rtio_iodev_list_start = .; KEEP(*(SORT_BY_NAME(._rtio_iodev.static.*))); _rtio_iodev_list_end = .; } > RAM AT > FLASH
- rtio_sqe_pool_area : ALIGN_WITH_INPUT SUBALIGN(4) { _rtio_sqe_pool_list_start = .; KEEP(*(SORT_BY_NAME(._rtio_sqe_pool.static.*))); _rtio_sqe_pool_list_end = .; } > RAM AT > FLASH
- rtio_cqe_pool_area : ALIGN_WITH_INPUT SUBALIGN(4) { _rtio_cqe_pool_list_start = .; KEEP(*(SORT_BY_NAME(._rtio_cqe_pool.static.*))); _rtio_cqe_pool_list_end = .; } > RAM AT > FLASH
     __data_region_end = .;
    bss (NOLOAD) : ALIGN_WITH_INPUT
  {
