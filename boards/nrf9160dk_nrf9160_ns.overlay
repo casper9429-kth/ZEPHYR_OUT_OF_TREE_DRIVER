@@ -1,0 +1,36 @@
+/ {
+
+	/* PIR sensor driver for the pyd1598 sensor, supports multiple sensors
+	* to add more sensors, add more child nodes to the pyd1598_master node
+	* and add them to the aliases node
+	*/
+	aliases {
+		pir0 = &pyd1598_0;
+		pir1 = &pyd1598_1;
+		pir2 = &pyd1598_2;
+	};
+
+
+
+	pyd1598_0: pyd1598_0 {
+		compatible = "excelitas,pyd1598";
+		serial_in-gpios = <&gpio0 19 GPIO_ACTIVE_HIGH>;
+		direct_link-gpios = <&gpio0 18 GPIO_ACTIVE_HIGH>;
+		status = "okay"; // set to "disabled" to disable the sensor
+	};
+
+	pyd1598_1: pyd1598_1 {
+		compatible = "excelitas,pyd1598";
+		serial_in-gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
+		direct_link-gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
+		status = "okay"; // set to "disabled" to disable the sensor
+
+	};
+
+	pyd1598_2: pyd1598_2 {
+		compatible = "excelitas,pyd1598";
+		serial_in-gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+		direct_link-gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
+		status = "okay"; // set to "disabled" to disable the sensor
+	};
+};

@@ -1,0 +1,180 @@
+menu "golioth-firmware-sdk (/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk)"
+osource "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/port/zephyr/Kconfig"
+config ZEPHYR_GOLIOTH_FIRMWARE_SDK_MODULE
+	bool
+	default y
+endmenu
+menu "nrf (/home/casper/golioth-ncs-workspace/nrf)"
+osource "/home/casper/golioth-ncs-workspace/nrf/Kconfig.nrf"
+config ZEPHYR_NRF_MODULE
+	bool
+	default y
+endmenu
+menu "wfa-qt-control-app (/home/casper/golioth-ncs-workspace/modules/lib/wfa-qt-control-app)"
+osource "/home/casper/golioth-ncs-workspace/modules/lib/wfa-qt-control-app/zephyr/Kconfig"
+config ZEPHYR_WFA_QT_CONTROL_APP_MODULE
+	bool
+	default y
+endmenu
+menu "mcuboot (/home/casper/golioth-ncs-workspace/bootloader/mcuboot)"
+osource "$(ZEPHYR_MCUBOOT_KCONFIG)"
+config ZEPHYR_MCUBOOT_MODULE
+	bool
+	default y
+endmenu
+menu "mbedtls (/home/casper/golioth-ncs-workspace/modules/crypto/mbedtls)"
+osource "$(ZEPHYR_MBEDTLS_KCONFIG)"
+config ZEPHYR_MBEDTLS_MODULE
+	bool
+	default y
+endmenu
+menu "trusted-firmware-m (/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m)"
+osource "$(ZEPHYR_TRUSTED_FIRMWARE_M_KCONFIG)"
+config ZEPHYR_TRUSTED_FIRMWARE_M_MODULE
+	bool
+	default y
+endmenu
+menu "cjson (/home/casper/golioth-ncs-workspace/modules/lib/cjson)"
+osource "$(ZEPHYR_CJSON_KCONFIG)"
+config ZEPHYR_CJSON_MODULE
+	bool
+	default y
+endmenu
+menu "azure-sdk-for-c (/home/casper/golioth-ncs-workspace/modules/lib/azure-sdk-for-c)"
+osource "$(ZEPHYR_AZURE_SDK_FOR_C_KCONFIG)"
+config ZEPHYR_AZURE_SDK_FOR_C_MODULE
+	bool
+	default y
+endmenu
+menu "cirrus-logic (/home/casper/golioth-ncs-workspace/modules/hal/cirrus-logic)"
+osource "/home/casper/golioth-ncs-workspace/modules/hal/cirrus-logic/Kconfig"
+config ZEPHYR_CIRRUS_LOGIC_MODULE
+	bool
+	default y
+endmenu
+menu "openthread (/home/casper/golioth-ncs-workspace/modules/lib/openthread)"
+osource "$(ZEPHYR_OPENTHREAD_KCONFIG)"
+config ZEPHYR_OPENTHREAD_MODULE
+	bool
+	default y
+endmenu
+menu "memfault-firmware-sdk (/home/casper/golioth-ncs-workspace/modules/lib/memfault-firmware-sdk)"
+osource "/home/casper/golioth-ncs-workspace/modules/lib/memfault-firmware-sdk/ports/zephyr/Kconfig"
+config ZEPHYR_MEMFAULT_FIRMWARE_SDK_MODULE
+	bool
+	default y
+endmenu
+menu "canopennode (/home/casper/golioth-ncs-workspace/modules/lib/canopennode)"
+osource "$(ZEPHYR_CANOPENNODE_KCONFIG)"
+config ZEPHYR_CANOPENNODE_MODULE
+	bool
+	default y
+endmenu
+menu "chre (/home/casper/golioth-ncs-workspace/modules/lib/chre)"
+osource "/home/casper/golioth-ncs-workspace/modules/lib/chre/platform/zephyr/Kconfig"
+config ZEPHYR_CHRE_MODULE
+	bool
+	default y
+endmenu
+menu "cmsis (/home/casper/golioth-ncs-workspace/modules/hal/cmsis)"
+osource "$(ZEPHYR_CMSIS_KCONFIG)"
+config ZEPHYR_CMSIS_MODULE
+	bool
+	default y
+endmenu
+menu "fatfs (/home/casper/golioth-ncs-workspace/modules/fs/fatfs)"
+osource "$(ZEPHYR_FATFS_KCONFIG)"
+config ZEPHYR_FATFS_MODULE
+	bool
+	default y
+endmenu
+menu "hal_nordic (/home/casper/golioth-ncs-workspace/modules/hal/nordic)"
+osource "$(ZEPHYR_HAL_NORDIC_KCONFIG)"
+config ZEPHYR_HAL_NORDIC_MODULE
+	bool
+	default y
+endmenu
+menu "liblc3 (/home/casper/golioth-ncs-workspace/modules/lib/liblc3)"
+osource "$(ZEPHYR_LIBLC3_KCONFIG)"
+config ZEPHYR_LIBLC3_MODULE
+	bool
+	default y
+endmenu
+menu "littlefs (/home/casper/golioth-ncs-workspace/modules/fs/littlefs)"
+osource "$(ZEPHYR_LITTLEFS_KCONFIG)"
+config ZEPHYR_LITTLEFS_MODULE
+	bool
+	default y
+endmenu
+menu "loramac-node (/home/casper/golioth-ncs-workspace/modules/lib/loramac-node)"
+osource "$(ZEPHYR_LORAMAC_NODE_KCONFIG)"
+config ZEPHYR_LORAMAC_NODE_MODULE
+	bool
+	default y
+endmenu
+menu "lvgl (/home/casper/golioth-ncs-workspace/modules/lib/gui/lvgl)"
+osource "/home/casper/golioth-ncs-workspace/modules/lib/gui/lvgl/Kconfig"
+config ZEPHYR_LVGL_MODULE
+	bool
+	default y
+endmenu
+menu "lz4 (/home/casper/golioth-ncs-workspace/modules/lib/lz4)"
+osource "$(ZEPHYR_LZ4_KCONFIG)"
+config ZEPHYR_LZ4_MODULE
+	bool
+	default y
+endmenu
+menu "nanopb (/home/casper/golioth-ncs-workspace/modules/lib/nanopb)"
+osource "$(ZEPHYR_NANOPB_KCONFIG)"
+config ZEPHYR_NANOPB_MODULE
+	bool
+	default y
+endmenu
+menu "picolibc (/home/casper/golioth-ncs-workspace/modules/lib/picolibc)"
+osource "/home/casper/golioth-ncs-workspace/modules/lib/picolibc/zephyr/Kconfig"
+config ZEPHYR_PICOLIBC_MODULE
+	bool
+	default y
+endmenu
+menu "segger (/home/casper/golioth-ncs-workspace/modules/debug/segger)"
+osource "$(ZEPHYR_SEGGER_KCONFIG)"
+config ZEPHYR_SEGGER_MODULE
+	bool
+	default y
+endmenu
+menu "TraceRecorder (/home/casper/golioth-ncs-workspace/modules/debug/TraceRecorder)"
+osource "/home/casper/golioth-ncs-workspace/modules/debug/TraceRecorder/kernelports/Zephyr/Kconfig"
+config ZEPHYR_TRACERECORDER_MODULE
+	bool
+	default y
+endmenu
+menu "uoscore-uedhoc (/home/casper/golioth-ncs-workspace/modules/lib/uoscore-uedhoc)"
+osource "$(ZEPHYR_UOSCORE_UEDHOC_KCONFIG)"
+config ZEPHYR_UOSCORE_UEDHOC_MODULE
+	bool
+	default y
+endmenu
+menu "zcbor (/home/casper/golioth-ncs-workspace/modules/lib/zcbor)"
+osource "$(ZEPHYR_ZCBOR_KCONFIG)"
+config ZEPHYR_ZCBOR_MODULE
+	bool
+	default y
+endmenu
+menu "zscilib (/home/casper/golioth-ncs-workspace/modules/lib/zscilib)"
+osource "/home/casper/golioth-ncs-workspace/modules/lib/zscilib/Kconfig.zscilib"
+config ZEPHYR_ZSCILIB_MODULE
+	bool
+	default y
+endmenu
+menu "nrfxlib (/home/casper/golioth-ncs-workspace/nrfxlib)"
+osource "/home/casper/golioth-ncs-workspace/nrfxlib/Kconfig.nrfxlib"
+config ZEPHYR_NRFXLIB_MODULE
+	bool
+	default y
+endmenu
+menu "connectedhomeip (/home/casper/golioth-ncs-workspace/modules/lib/matter)"
+osource "/home/casper/golioth-ncs-workspace/modules/lib/matter/config/nrfconnect/chip-module/Kconfig"
+config ZEPHYR_CONNECTEDHOMEIP_MODULE
+	bool
+	default y
+endmenu

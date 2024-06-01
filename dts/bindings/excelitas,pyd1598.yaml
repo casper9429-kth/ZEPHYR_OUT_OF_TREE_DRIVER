@@ -1,0 +1,21 @@
+description: Binding for the pyd1598 sensor.
+
+compatible: "excelitas,pyd1598"
+
+include: base.yaml
+
+
+properties:
+    serial_in-gpios:
+        type: phandle-array
+        required: true
+        description: "GPIO pin for serial input."
+
+    direct_link-gpios:
+        type: phandle-array
+        required: true
+        description: "GPIO pin for direct link."
+
+
+
+

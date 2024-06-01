@@ -1,0 +1,6 @@
+config PYD1598
+	bool "PYD1598 motion sensor"
+	default y
+	depends on GPIO
+	help
+	  Enable driver for the Excelitas PYD1598 motion sensor.

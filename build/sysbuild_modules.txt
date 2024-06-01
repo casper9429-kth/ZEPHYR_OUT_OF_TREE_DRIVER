@@ -1,0 +1,1 @@
+"nrf":"/home/casper/golioth-ncs-workspace/nrf":"/home/casper/golioth-ncs-workspace/nrf/sysbuild"

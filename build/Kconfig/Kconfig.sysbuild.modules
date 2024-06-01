@@ -1,0 +1,6 @@
+menu "nrf (/home/casper/golioth-ncs-workspace/nrf)"
+osource "/home/casper/golioth-ncs-workspace/nrf/sysbuild/Kconfig.sysbuild"
+config ZEPHYR_NRF_MODULE
+	bool
+	default y
+endmenu
