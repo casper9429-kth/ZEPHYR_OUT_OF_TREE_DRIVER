@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install")
+  set(CMAKE_INSTALL_PREFIX "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,73 +39,73 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/lib/ext/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/lib/ext/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/lib/fih/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/lib/fih/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/tools/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/tools/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/secure_fw/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/interface/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/interface/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/platform/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/platform/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/platform/ext/accelerator/cmake_install.cmake")
+  include("/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/platform/ext/accelerator/cmake_install.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/outputs/")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/outputs/")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/outputs" TYPE DIRECTORY MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/bin/")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/outputs" TYPE DIRECTORY MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/bin/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/lib/s_veneers.o")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/lib/s_veneers.o")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/lib" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/secure_fw/s_veneers.o")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/lib" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/secure_fw/s_veneers.o")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/client.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/error.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/client.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/error.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa" TYPE FILE MESSAGE_NEVER FILES
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa" TYPE FILE MESSAGE_NEVER FILES
     "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/psa/client.h"
     "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/psa/error.h"
     )
@@ -113,26 +113,26 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa_manifest/sid.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa_manifest/sid.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa_manifest" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/generated/interface/include/psa_manifest/sid.h")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa_manifest" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/generated/interface/include/psa_manifest/sid.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/tfm_api.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/tfm_ns_interface.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/tfm_api.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/tfm_ns_interface.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES
     "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_api.h"
     "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_ns_interface.h"
     )
@@ -140,74 +140,74 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/tfm_ns_client_ext.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/tfm_ns_client_ext.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_ns_client_ext.h")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_ns_client_ext.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/config_tfm.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/config_tfm.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/secure_fw/include/config_tfm.h")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/secure_fw/include/config_tfm.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/config_base.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/config_base.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/config/config_base.h")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/config/config_base.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/tfm_psa_call_pack.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/tfm_psa_call_pack.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_psa_call_pack.h")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_psa_call_pack.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/framework_feature.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/framework_feature.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/generated/interface/include/psa/framework_feature.h")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/generated/interface/include/psa/framework_feature.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/crypto_extra.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/crypto_compat.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/crypto.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/crypto_client_struct.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/crypto_platform.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/crypto_sizes.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/crypto_struct.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/crypto_types.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa/crypto_values.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/crypto_extra.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/crypto_compat.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/crypto.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/crypto_client_struct.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/crypto_platform.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/crypto_sizes.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/crypto_struct.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/crypto_types.h;/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa/crypto_values.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/psa" TYPE FILE MESSAGE_NEVER FILES
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/psa" TYPE FILE MESSAGE_NEVER FILES
     "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/psa/crypto_extra.h"
     "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/psa/crypto_compat.h"
     "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/psa/crypto.h"
@@ -222,86 +222,86 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/tfm_crypto_defs.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/tfm_crypto_defs.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_crypto_defs.h")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_crypto_defs.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/tfm_platform_api.h")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/tfm_platform_api.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_platform_api.h")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/tfm_platform_api.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/src/tfm_psa_ns_api.c")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/src/tfm_psa_ns_api.c")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/src" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/src/tfm_psa_ns_api.c")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/src" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/src/tfm_psa_ns_api.c")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include/os_wrapper")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include/os_wrapper")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/include" TYPE DIRECTORY MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/os_wrapper")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/include" TYPE DIRECTORY MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/include/os_wrapper")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/src/os_wrapper")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/src/os_wrapper")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/src" TYPE DIRECTORY MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/src/os_wrapper")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/src" TYPE DIRECTORY MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/src/os_wrapper")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/src/tfm_crypto_api.c")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/src/tfm_crypto_api.c")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/src" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/src/tfm_crypto_api.c")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/src" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/src/tfm_crypto_api.c")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/src/tfm_platform_api.c")
+   "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/src/tfm_platform_api.c")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/install/interface/src" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/src/tfm_platform_api.c")
+  file(INSTALL DESTINATION "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/install/interface/src" TYPE FILE MESSAGE_NEVER FILES "/home/casper/golioth-ncs-workspace/modules/tee/tf-m/trusted-firmware-m/interface/src/tfm_platform_api.c")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -312,5 +312,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build/tfm/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build/tfm/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

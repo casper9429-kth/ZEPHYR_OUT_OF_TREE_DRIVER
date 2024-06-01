@@ -727,7 +727,7 @@ rule C_STATIC_LIBRARY_LINKER__kernel_
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__.2e.2e__modules__lib__golioth-firmware-sdk__examples__zephyr__pyd1598_driver__drivers__sensor__pyd1598_
+rule C_COMPILER__.2e.2e__modules__lib__golioth-firmware-sdk__examples__zephyr__flox_fixed_com_mcu__applications__ZEPHYR_OUT_OF_TREE_DRIVER__drivers__sensor__pyd1598_
   depfile = $DEP_FILE
   deps = gcc
   command = ccache /home/casper/zephyr-sdk-0.16.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -737,7 +737,7 @@ rule C_COMPILER__.2e.2e__modules__lib__golioth-firmware-sdk__examples__zephyr__p
 #############################################
 # Rule for linking C static library.
 
-rule C_STATIC_LIBRARY_LINKER__.2e.2e__modules__lib__golioth-firmware-sdk__examples__zephyr__pyd1598_driver__drivers__sensor__pyd1598_
+rule C_STATIC_LIBRARY_LINKER__.2e.2e__modules__lib__golioth-firmware-sdk__examples__zephyr__flox_fixed_com_mcu__applications__ZEPHYR_OUT_OF_TREE_DRIVER__drivers__sensor__pyd1598_
   command = $PRE_LINK && ccache /usr/bin/cmake -E rm -f $TARGET_FILE && ccache /home/casper/zephyr-sdk-0.16.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ar qc $TARGET_FILE $LINK_FLAGS $in && ccache /home/casper/zephyr-sdk-0.16.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-ranlib $TARGET_FILE && $POST_BUILD
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT
@@ -747,7 +747,7 @@ rule C_STATIC_LIBRARY_LINKER__.2e.2e__modules__lib__golioth-firmware-sdk__exampl
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/bin/cmake --regenerate-during-build -S/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver -B/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/build
+  command = /usr/bin/cmake --regenerate-during-build -S/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER -B/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/build
   description = Re-running CMake...
   generator = 1
 

@@ -25,4 +25,4 @@ empty_file.o: /home/casper/golioth-ncs-workspace/zephyr/misc/empty_file.c \
  /home/casper/golioth-ncs-workspace/zephyr/boards/arm/nrf9160dk_nrf9160/nrf9160dk_nrf9160_partition_conf.dtsi \
  /home/casper/golioth-ncs-workspace/zephyr/boards/arm/nrf9160dk_nrf9160/nrf9160dk_nrf9160_ns_0_14_0.overlay \
  /home/casper/golioth-ncs-workspace/zephyr/boards/arm/nrf9160dk_nrf9160/nrf9160dk_nrf9160_common_0_14_0.dtsi \
- /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/boards/nrf9160dk_nrf9160_ns.overlay
+ /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/boards/nrf9160dk_nrf9160_ns.overlay

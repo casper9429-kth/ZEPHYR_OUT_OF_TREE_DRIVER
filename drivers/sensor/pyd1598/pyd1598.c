@@ -27,6 +27,8 @@ struct pyd1598_config {
 	struct gpio_dt_spec direct_link;
 };
 
+// Make a error this should block the build
+
 LOG_MODULE_REGISTER(PYD1598, CONFIG_SENSOR_LOG_LEVEL);
 
 /**

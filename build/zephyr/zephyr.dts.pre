@@ -1111,7 +1111,7 @@ arduino_spi: &spi3 {
 };
 # 8 "/home/casper/golioth-ncs-workspace/zephyr/boards/arm/nrf9160dk_nrf9160/nrf9160dk_nrf9160_ns_0_14_0.overlay" 2
 # 0 "<command-line>" 2
-# 1 "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/pyd1598_driver/boards/nrf9160dk_nrf9160_ns.overlay" 1
+# 1 "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/ZEPHYR_OUT_OF_TREE_DRIVER/boards/nrf9160dk_nrf9160_ns.overlay" 1
 / {
 
 
