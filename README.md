@@ -16,3 +16,12 @@ This repo have the goal to learn and show how to add a out of tree driver in zep
 # QUESTIONS:
 * How to add a out of tree driver in zephyr, why doesn't the current way work?
 * How to properly access the driver in main.c? Right now it is added in `drivers/sensor/pyd1598/CMakeLists.txt` with `zephyr_include_directories(${CMAKE_CURRENT_SOURCE_DIR})`. Is this the correct way?
+
+
+# Build:
+1. Follow the [Zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/getting_started/index.html) **use venv**
+2. Clone this repo and place it anywhere in zephyr's directory
+3. Make sure `source <where-you-placed-it-during-zephyr-getting-stated>/.venv/bin/activate` is activated 
+3. `cd into this repo`
+4. `west build -b nrf9160dk_nrf9160_ns --pristine`
+5. `west flash`
