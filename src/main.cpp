@@ -1,7 +1,4 @@
 #include <zephyr/logging/log.h>
-
-
-
 #include <stdio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>

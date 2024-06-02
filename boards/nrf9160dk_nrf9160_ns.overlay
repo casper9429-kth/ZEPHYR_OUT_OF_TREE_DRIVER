@@ -1,9 +1,5 @@
 / {
 
-	/* PIR sensor driver for the pyd1598 sensor, supports multiple sensors
-	* to add more sensors, add more child nodes to the pyd1598_master node
-	* and add them to the aliases node
-	*/
 	aliases {
 		pir0 = &pyd1598_0;
 		pir1 = &pyd1598_1;
