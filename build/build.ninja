@@ -150,7 +150,7 @@ build zephyr_property_target: phony
 #############################################
 # Order-only phony target for app
 
-build cmake_object_order_depends_target_app: phony || cmake_object_order_depends_target_mbedcrypto cmake_object_order_depends_target_mbedcrypto_base modules/trusted-firmware-m/tfm zephyr/driver_validation_h_target zephyr/kobj_types_h_target zephyr/offsets_h zephyr/syscall_list_h_target zephyr/zephyr_generated_headers
+build cmake_object_order_depends_target_app: phony || cmake_object_order_depends_target_mbedcrypto cmake_object_order_depends_target_mbedcrypto_base modules/trusted-firmware-m/tfm zephyr/driver_validation_h_target zephyr/kobj_types_h_target zephyr/syscall_list_h_target zephyr/zephyr_generated_headers
 
 build CMakeFiles/app.dir/drivers/sensor/pyd1598/pyd1598.c.obj: C_COMPILER__app_ /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/drivers/sensor/pyd1598/pyd1598.c || cmake_object_order_depends_target_app
   DEFINES = -DKERNEL -DMBEDTLS_CONFIG_FILE=\"nrf-config.h\" -DMBEDTLS_USER_CONFIG_FILE=\"nrf-config-user.h\" -DNRF9160_XXAA -DNRF_SKIP_FICR_NS_COPY_TO_RAM -DNRF_TRUSTZONE_NONSECURE -DPICOLIBC_INTEGER_PRINTF_SCANF -DTFM_PSA_API -DUSE_PARTITION_MANAGER=1 -D_POSIX_C_SOURCE=200809 -D__LINUX_ERRNO_EXTENSIONS__ -D__PROGRAM_START -D__ZEPHYR__=1
@@ -180,7 +180,7 @@ build CMakeFiles/app.dir/src/main.cpp.obj: CXX_COMPILER__app_ /home/casper/golio
 #############################################
 # Link the static library app/libapp.a
 
-build app/libapp.a: CXX_STATIC_LIBRARY_LINKER__app_ CMakeFiles/app.dir/drivers/sensor/pyd1598/pyd1598.c.obj CMakeFiles/app.dir/src/main.cpp.obj || modules/nrf/subsys/nrf_security/src/libmbedcrypto.a modules/nrf/subsys/nrf_security/src/libmbedcrypto_base.a modules/trusted-firmware-m/tfm zephyr/driver_validation_h_target zephyr/kobj_types_h_target zephyr/offsets_h zephyr/syscall_list_h_target zephyr/zephyr_generated_headers
+build app/libapp.a: CXX_STATIC_LIBRARY_LINKER__app_ CMakeFiles/app.dir/drivers/sensor/pyd1598/pyd1598.c.obj CMakeFiles/app.dir/src/main.cpp.obj || modules/nrf/subsys/nrf_security/src/libmbedcrypto.a modules/nrf/subsys/nrf_security/src/libmbedcrypto_base.a modules/trusted-firmware-m/tfm zephyr/driver_validation_h_target zephyr/kobj_types_h_target zephyr/syscall_list_h_target zephyr/zephyr_generated_headers
   OBJECT_DIR = CMakeFiles/app.dir
   POST_BUILD = :
   PRE_LINK = :

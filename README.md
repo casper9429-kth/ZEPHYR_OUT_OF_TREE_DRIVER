@@ -1,5 +1,5 @@
 # ZEPHYR_OUT_OF_TREE_DRIVER
-This repo have the goal to learn and show how to add a out of tree driver in zephyr, and document common problems and how to solve them. For now it doesn't work.
+This repo have the goal to learn and show how to add a out of tree driver in zephyr, and document common problems and how to solve them. For now it will add an empty driver for the PYD1598 sensor and access it in main.c.
 
 # Primary Sources:
 * [Adding an Out-of-Tree sensor driver to Zephyr](https://blog.golioth.io/adding-an-out-of-tree-sensor-driver-to-zephyr/)
@@ -9,13 +9,39 @@ This repo have the goal to learn and show how to add a out of tree driver in zep
 
 # STATUS:
 * [x] Make the device driver accesable in main.c
-* [x] Make the full PYD1598 device driver with bitbanging
-* [x] Test the full PYD1598 device driver 
-* [x] Make a wrapper clustering multiple pyd1598 devices to act as a single device
+* [] Make the full PYD1598 device driver with bitbanging
+* [] Test the full PYD1598 device driver 
+* [] Make a wrapper clustering multiple pyd1598 devices to act as a single device
 
 # QUESTIONS:
 * How to add a out of tree driver in zephyr, why doesn't the current way work?
 * How to properly access the driver in main.c? Right now it is added in `drivers/sensor/pyd1598/CMakeLists.txt` with `zephyr_include_directories(${CMAKE_CURRENT_SOURCE_DIR})`. Is this the correct way?
+
+# PROBLEMS and SOLUTIONS:
+
+## Problem 1: 
+* **Problem:** When adding the driver in `drivers/sensor/pyd1598/CMakeLists.txt` the driver is compiled but does not get linked to device tree.
+
+In file: `drivers/sensor/pyd1598/CMakeLists.txt`
+```
+zephyr_library()
+zephyr_library_sources(pyd1598.c)
+```
+* **Solution:** Add the driver using cmake's `target_sources` in `CMakeLists.txt`.
+In file: `drivers/sensor/pyd1598/CMakeLists.txt`
+```
+# Ensure the directory containing <driver.h> is included
+zephyr_include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
+target_sources(app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/pyd1598.c)
+```
+
+## Problem 2:
+When compiling the driver: `offset.h: error, this error automatically gets fixed by adding the driver in `CMakeLists.txt` as mentioned in Problem 1. But if the error still persists, you can add this to the driver's `CMakeLists.txt`:
+```
+# https://github.com/zephyrproject-rtos/zephyr/issues/67268
+add_dependencies(${ZEPHYR_CURRENT_LIBRARY} offsets_h)
+```
 
 
 # Build:

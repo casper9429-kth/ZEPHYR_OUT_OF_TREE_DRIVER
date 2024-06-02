@@ -1114,10 +1114,6 @@ arduino_spi: &spi3 {
 # 1 "/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/boards/nrf9160dk_nrf9160_ns.overlay" 1
 / {
 
-
-
-
-
  aliases {
   pir0 = &pyd1598_0;
   pir1 = &pyd1598_1;
