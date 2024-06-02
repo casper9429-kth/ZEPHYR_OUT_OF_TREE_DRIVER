@@ -379,6 +379,5 @@
 /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/drivers/CMakeFiles/rebuild_cache.dir
 /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/drivers/sensor/CMakeFiles/edit_cache.dir
 /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/drivers/sensor/CMakeFiles/rebuild_cache.dir
-/home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/drivers/sensor/pyd1598/CMakeFiles/..__modules__lib__golioth-firmware-sdk__examples__zephyr__flox_fixed_com_mcu__applications__pyd1598_driver__drivers__sensor__pyd1598.dir
 /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/drivers/sensor/pyd1598/CMakeFiles/edit_cache.dir
 /home/casper/golioth-ncs-workspace/modules/lib/golioth-firmware-sdk/examples/zephyr/flox_fixed_com_mcu/applications/pyd1598_driver/build/drivers/sensor/pyd1598/CMakeFiles/rebuild_cache.dir

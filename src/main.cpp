@@ -16,7 +16,6 @@
 #include <zephyr/drivers/sensor.h>
 #include <pyd1598.h>
 
-
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 
 
