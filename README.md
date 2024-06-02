@@ -9,9 +9,9 @@ This repo have the goal to learn and show how to add a out of tree driver in zep
 
 # STATUS:
 - [x] Make the device driver accesable in main.c
-- [x] Make the full PYD1598 device driver with bitbanging
-- [x] Test the full PYD1598 device driver 
-- [x] Make a wrapper clustering multiple pyd1598 devices to act as a single device
+- [ ] Make the full PYD1598 device driver with bitbanging
+- [ ] Test the full PYD1598 device driver 
+- [ ] Make a wrapper clustering multiple pyd1598 devices to act as a single device
 
 # QUESTIONS:
 * How to add a out of tree driver in zephyr, why doesn't the current way work?
