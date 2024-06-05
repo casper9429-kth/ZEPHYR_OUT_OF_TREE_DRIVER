@@ -30,6 +30,7 @@
 		mcuboot-led0 = &led0;
 		watchdog0 = &wdt0;
 		spi-flash0 = &mx25r64;
+		pir-master = &pyd1598_master;
 		pir0 = &pyd1598_0;
 		pir1 = &pyd1598_1;
 		pir2 = &pyd1598_2;
@@ -666,22 +667,25 @@
 			reg = < 0x20020000 0x20000 >;
 		};
 	};
-	pyd1598_0: pyd1598_0 {
-		compatible = "excelitas,pyd1598";
-		serial_in-gpios = < &gpio0 0x13 0x0 >;
-		direct_link-gpios = < &gpio0 0x12 0x0 >;
-		status = "okay";
-	};
-	pyd1598_1: pyd1598_1 {
-		compatible = "excelitas,pyd1598";
-		serial_in-gpios = < &gpio0 0x11 0x0 >;
-		direct_link-gpios = < &gpio0 0x10 0x0 >;
-		status = "okay";
-	};
-	pyd1598_2: pyd1598_2 {
-		compatible = "excelitas,pyd1598";
-		serial_in-gpios = < &gpio0 0xf 0x0 >;
-		direct_link-gpios = < &gpio0 0xe 0x0 >;
-		status = "okay";
+	pyd1598_master: pyd1598-master {
+		compatible = "excelitas,pyd1598-master";
+		pyd1598_0: pyd1598_0 {
+			compatible = "excelitas,pyd1598";
+			serial_in-gpios = < &gpio0 0x13 0x0 >;
+			direct_link-gpios = < &gpio0 0x12 0x0 >;
+			status = "okay";
+		};
+		pyd1598_1: pyd1598_1 {
+			compatible = "excelitas,pyd1598";
+			serial_in-gpios = < &gpio0 0x11 0x0 >;
+			direct_link-gpios = < &gpio0 0x10 0x0 >;
+			status = "okay";
+		};
+		pyd1598_2: pyd1598_2 {
+			compatible = "excelitas,pyd1598";
+			serial_in-gpios = < &gpio0 0xf 0x0 >;
+			direct_link-gpios = < &gpio0 0xe 0x0 >;
+			status = "okay";
+		};
 	};
 };

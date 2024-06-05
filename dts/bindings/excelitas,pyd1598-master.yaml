@@ -1,0 +1,12 @@
+description: Binding for the pyd1598 sensor.
+
+compatible: "excelitas,pyd1598_master"
+
+include: base.yaml
+
+
+child-nodes:
+    Description: The child nodes of the pyd1598_master node are the pyd1598 nodes.
+
+
+

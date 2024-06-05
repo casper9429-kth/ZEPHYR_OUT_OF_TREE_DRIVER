@@ -15,14 +15,20 @@
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 
+// Macro to count the number of OKAY children of #master_node
+#define COUNT_CHILDREN_OKAY(child) +1
+#define NUM_PYD1598_OKAY (0 DT_FOREACH_CHILD_STATUS_OKAY(DT_ALIAS(pir_master), COUNT_CHILDREN_OKAY))
+
 
 
 int main(void)
 {
 
-    const struct device *dev_0 = DEVICE_DT_GET(DT_ALIAS(pir0));
-    const struct device *dev_1 = DEVICE_DT_GET(DT_ALIAS(pir1));
-    const struct device *dev_2 = DEVICE_DT_GET(DT_ALIAS(pir2));
+    const struct device *devices[NUM_PYD1598_OKAY] = {DT_FOREACH_CHILD_STATUS_OKAY_SEP(DT_ALIAS(pir_master), DEVICE_DT_GET,(,))};
+
+    const struct device *dev_0 = devices[0];//DEVICE_DT_GET(DT_ALIAS(pir0));
+    const struct device *dev_1 = devices[1];//DEVICE_DT_GET(DT_ALIAS(pir1));
+    const struct device *dev_2 = devices[2];//DEVICE_DT_GET(DT_ALIAS(pir2));
 
     if (!dev_0) {
         LOG_ERR("Failed to get binding for PYD1598_0");
