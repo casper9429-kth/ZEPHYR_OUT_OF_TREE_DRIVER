@@ -1,3 +1,19 @@
+/*
+PYD1598 driver for Zephyr RTOS - out of tree driver
+
+This driver should work with the Excelitas PYD1588 and PYD1598 sensors, but only the PYD1598 has been tested.
+
+In this driver the Zephyr unified sensor API is used sparse,
+the reason is that the api does not fit the sensor well. 
+And the driver is implemented out of tree, modifying the sensor.h
+is not an option.
+
+Only wakeup mode is supported.
+
+Author: Casper Augustsson Savinov
+mail: casper9429@gmail.com
+*/
+
 #define DT_DRV_COMPAT excelitas_pyd1598
 
 #include <string.h>
@@ -11,8 +27,8 @@
 #include <zephyr/pm/device_runtime.h>
 #include <zephyr/sys/byteorder.h>
 #include <zephyr/kernel.h>
-#include <errno.h>
-
+#include <errno.h> // std error codes : https://github.com/zephyrproject-rtos/zephyr/blob/main/lib/libc/minimal/include/errno.h
+#include <stdint.h>
 
 // Stored in RAM, save all settings here that might be changed during runtime
 struct pyd1598_data {
@@ -48,26 +64,34 @@ struct pyd1598_config {
 
 LOG_MODULE_REGISTER(PYD1598, CONFIG_SENSOR_LOG_LEVEL);
 
-/**
- * @brief Set pyd1598 attributes.
- *
- * @param dev Pointer to the pyd1598 device structure
- * @param chan Channel to set.
- *             Supported channels :
- *               SENSOR_CHAN_WEIGHT
- *               SENSOR_CHAN_ALL
- * @param attr Attribute to change.
- *             Supported attributes :
- *               SENSOR_ATTR_SAMPLING_FREQUENCY
- *               SENSOR_ATTR_OFFSET
- *               SENSOR_ATTR_CALIBRATION
- *               SENSOR_ATTR_SLOPE
- *               SENSOR_ATTR_GAIN
- * @param val   Value to set.
- * @retval 0 on success
- * @retval -ENOTSUP if an invalid attribute is given
- *
- */
+
+
+// Interface för config:
+// Have two driver config buffer, actual config buffer, desired config buffer. Use enum to specify which buffer to use
+// The default buffer is the desired buffer for push, get, set. But for fetch it is the actual buffer.
+// 
+// To make happy flow possible while keeping the sensor robust to error,
+// The push, get and set always write to the desired buffer to not allow noise to corrupt the config over time.
+// The fetch always reads config to the actual buffer to make sure the sensor does not get corrupted by noise. 
+//
+// Make examples of how to use the sensor in wake-up mode, and in forced readout mode. Make it impossible to use interrupt readout mode. 
+//
+// Instead of returning raw adc count: split it into BPF, LPF and Temperature sensor. And if possible make interpertation of the data.
+//
+// * push: write from driver buffer to sensor - for all configurations
+// * pull: read from sensor to driver buffer - for all configurations
+// * get: read from driver buffer to user - one for each configuration
+// * set: write from user to driver buffer - one for each configuration
+// * reset: reset sensor in wake-up mode 
+
+// Interface sensor to user:
+// * Reset sensor 
+// * Forced readout
+// * Wake-up readout : reset senor and force readout
+
+
+
+
 
 
 // Initialize the sensor device, do not configure the sensor here
@@ -86,6 +110,271 @@ static int pyd1598_init(const struct device *dev)
 }
 
 
+/**
+ * @brief Pushes config from internal buffer to sensor. 
+ * Write configuration to the internal buffer using set_config.
+ * 
+ * @param dev Pointer to the sensor device
+ *
+ * @return 0 if successful, negative errno code if failure.
+ */
+static int pyd1598_push_config(const struct device *dev){
+    LOG_DBG("pyd1598_push_config");
+    return 0;
+}
+
+/**
+ * @brief Fetch config from sensor to internal buffer. 
+ * 
+ * @param dev Pointer to the sensor device
+ *
+ * @return 0 if successful, negative errno code if failure.
+ */
+static int pyd1598_fetch_config(const struct device *dev){
+    LOG_DBG("pyd1598_fetch_config");
+    return 0;
+}
+
+
+// Default config
+/**
+ * @brief Set default configuration of the sensor to the internal buffer.
+ *
+ * Default configuration for the sensor:
+ * - threshold: 31 (range 0-255)
+ * - blind_time: 6 (0.5 s + 0.5 s * blind_time, range 0-15)
+ * - pulse_counter: 0 (1 + pulse_counter, range 0-3)
+ * - window_time: 0 (2s + 2s * window_time, range 0-3)
+ * - operation_mode: 2 (0: Forced Readout, 1: Interrupt Readout, 2: Wake-up Mode): Only Wake-up Mode is supported
+ * - signal_source: 1 (0: PIR(BRF), 1: PIR(LPF), 2: Not Allowed, 3: Temperature Sensor)
+ * - HPF_Cut_Off: 0 (0: 0.4 Hz, 1: 0.2 Hz)
+ * - Count_Mode: 1 (0: count with (0), or without (1) BPF sign change)
+ *
+ * More information about the configuration values can be found in the datasheet:
+ * https://www.excelitas.com/file-download/download/public/66906?filename=PYD_1588_Low-Power_DigiPyro_datasheet_.pdf
+ *
+ * @param dev Pointer to the sensor device
+ * @return 0 if successful, negative errno code if failure.
+ */
+static int pyd1598_set_default_config(const struct device *dev) {
+    LOG_DBG("pyd1598_set_default_config");
+    return 0;
+}
+
+/**
+* @brief Set pyd1598 threshold configuration to the internal buffer. 
+*
+* @param threshold Threshold value to set (range 0-255)
+* @param dev Pointer to the sensor device
+*
+* @return 0 if successful, negative errno code if failure.
+**/
+static int pyd1598_set_threshold(const struct device *dev, uint8_t threshold){
+    LOG_DBG("pyd1598_set_threshold");
+    return 0;
+}
+
+/**
+ * @brief Set pyd1598 blind time configuration to the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param blind_time Blind time value to set (0.5 s + 0.5 s * blind_time, range 0-15)
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+static int pyd1598_set_blind_time(const struct device *dev, uint8_t blind_time){
+    LOG_DBG("pyd1598_set_blind_time");
+    return 0;
+}
+
+/**
+ * @brief Set pyd1598 pulse counter configuration to the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param pulse_counter Pulse counter value to set (1 + pulse_counter, range 0-3)
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+static int pyd1598_set_pulse_counter(const struct device *dev, uint8_t pulse_counter){
+    LOG_DBG("pyd1598_set_pulse_counter");
+    return 0;
+}
+
+/**
+ * @brief Set pyd1598 window time configuration to the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param window_time Window time value to set (2s + 2s * window_time, range 0-3)
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+static int pyd1598_set_window_time(const struct device *dev, uint8_t window_time){
+    LOG_DBG("pyd1598_set_window_time");
+    return 0;
+}
+
+/**
+ * @brief Set pyd1598 operation mode configuration to the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param operation_mode (Only 2: Wake-up Mode implemented) Operation mode value to set (0: Forced Readout, 1: Interrupt Readout, 2: Wake-up Mode)
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+static int pyd1598_set_operation_mode(const struct device *dev, uint8_t operation_mode){
+    LOG_DBG("pyd1598_set_operation_mode");
+    return 0;
+}
+
+
+/**
+ * @brief Set pyd1598 signal source configuration to the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param signal_source Signal source value to set (0: PIR(BRF), 1: PIR(LPF), 2: Not Allowed, 3: Temperature Sensor)
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+static int pyd1598_set_signal_source(const struct device *dev, uint8_t signal_source){
+    LOG_DBG("pyd1598_set_signal_source");
+    return 0;
+}
+
+/**
+ * @brief Set pyd1598 HPF Cut Off configuration to the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param hpf_cut_off HPF Cut Off value to set (0: 0.4 Hz, 1: 0.2 Hz)
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+static int pyd1598_set_hpf_cut_off(const struct device *dev, uint8_t hpf_cut_off){
+    LOG_DBG("pyd1598_set_hpf_cut_off");
+    return 0;
+}
+
+/**
+ * @brief Set pyd1598 Count Mode configuration to the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param count_mode Count Mode value to set (0: count with (0), or without (1) BPF sign change)
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+static int pyd1598_set_count_mode(const struct device *dev, uint8_t count_mode){
+    LOG_DBG("pyd1598_set_count_mode");
+    return 0;
+}
+
+
+// One get func for each attr
+
+/**
+ * @brief Get pyd1598 threshold configuration from the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return threshold value if successful, negative errno code if failure.
+*/
+static uint8_t pyd1598_get_threshold(const struct device *dev){
+    LOG_DBG("pyd1598_get_threshold");
+    return 0;
+}
+
+/**
+ * @brief Get pyd1598 blind time configuration from the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return blind time value if successful, negative errno code if failure.
+*/
+static uint8_t pyd1598_get_blind_time(const struct device *dev){
+    LOG_DBG("pyd1598_get_blind_time");
+    return 0;
+}
+
+/**
+ * @brief Get pyd1598 pulse counter configuration from the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return pulse counter value if successful, negative errno code if failure.
+*/
+static uint8_t pyd1598_get_pulse_counter(const struct device *dev){
+    LOG_DBG("pyd1598_get_pulse_counter");
+    return 0;
+}
+
+/**
+ * @brief Get pyd1598 window time configuration from the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return window time value if successful, negative errno code if failure.
+*/
+static uint8_t pyd1598_get_window_time(const struct device *dev){
+    LOG_DBG("pyd1598_get_window_time");
+    return 0;
+}
+
+/**
+ * @brief Get pyd1598 operation mode configuration from the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return operation mode value if successful, negative errno code if failure.
+*/
+static uint8_t pyd1598_get_operation_mode(const struct device *dev){
+    LOG_DBG("pyd1598_get_operation_mode");
+    return 0;
+}
+
+/**
+ * @brief Get pyd1598 signal source configuration from the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return signal source value if successful, negative errno code if failure.
+*/
+static uint8_t pyd1598_get_signal_source(const struct device *dev){
+    LOG_DBG("pyd1598_get_signal_source");
+    return 0;
+}
+
+/**
+ * @brief Get pyd1598 HPF Cut Off configuration from the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return HPF Cut Off value if successful, negative errno code if failure.
+*/
+static uint8_t pyd1598_get_hpf_cut_off(const struct device *dev){
+    LOG_DBG("pyd1598_get_hpf_cut_off");
+    return 0;
+}
+
+/**
+ * @brief Get pyd1598 Count Mode configuration from the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return Count Mode value if successful, negative errno code if failure.
+*/
+static uint8_t pyd1598_get_count_mode(const struct device *dev){
+    LOG_DBG("pyd1598_get_count_mode");
+    return 0;
+}
+
+
+
+// Function to fetch the sensor value
+static int pyd1598_fetch_measurement(const struct device *dev){
+    LOG_DBG("pyd1598_fetch_measurement");
+    return 0;
+}
+
+
+
 
 // Fill local buffer of desired configuration of the sensor
 static int pyd1598_attr_set(const struct device *dev, enum sensor_channel chan,
@@ -94,6 +383,9 @@ static int pyd1598_attr_set(const struct device *dev, enum sensor_channel chan,
     LOG_DBG("pyd1598_attr_set");
     return 0;
 }
+
+
+
 
 
 // Apply the configuration to the sensor if all configurations are valid and set
@@ -126,12 +418,6 @@ static int pyd1598_channel_get(const struct device *dev, enum sensor_channel cha
     return 0;
 }
 
-static const struct sensor_driver_api pyd1598_api = {
-    .attr_set = pyd1598_attr_set,
-    .attr_get = pyd1598_attr_get,
-    .sample_fetch = pyd1598_sample_fetch,
-    .channel_get = pyd1598_channel_get,
-};
 
 #define pyd1598_INIT(index)                                                      \
 	static struct pyd1598_data pyd1598_data_##index = {                        \
@@ -148,7 +434,7 @@ static const struct sensor_driver_api pyd1598_api = {
 	DEVICE_DT_INST_DEFINE(index, pyd1598_init, PM_DEVICE_DT_INST_GET(index), \
 			      &pyd1598_data_##index, &pyd1598_config_##index,      \
 			      POST_KERNEL, CONFIG_SENSOR_INIT_PRIORITY,        \
-			      &pyd1598_api);
+			      NULL);
 
 
 DT_INST_FOREACH_STATUS_OKAY(pyd1598_INIT)

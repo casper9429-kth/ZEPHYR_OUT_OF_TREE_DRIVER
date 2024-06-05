@@ -12,7 +12,7 @@
 #include <zephyr/devicetree.h>
 #include <zephyr/drivers/sensor.h>
 #include <pyd1598.h>
-#include <errno.h>
+#include <errno.h> // std error codes : https://github.com/zephyrproject-rtos/zephyr/blob/main/lib/libc/minimal/include/errno.h
 
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
