@@ -27,7 +27,14 @@ struct pyd1598_config {
 	struct gpio_dt_spec direct_link;
 };
 
-// Make a error this should block the build
+
+// Sensor api definitions
+// https://github.com/zephyrproject-rtos/zephyr/blob/main/include/zephyr/drivers/sensor.h
+
+// Spi bitbang driver:
+// https://github.com/GeorgeGkinis/zephyr/blob/5f4f9ba793d6cb18762decaf2c2e62b9ba05ae33/drivers/spi/spi_bitbang.c
+
+
 
 LOG_MODULE_REGISTER(PYD1598, CONFIG_SENSOR_LOG_LEVEL);
 
@@ -52,6 +59,8 @@ LOG_MODULE_REGISTER(PYD1598, CONFIG_SENSOR_LOG_LEVEL);
  *
  */
 
+
+// Initialize the sensor device, do not con
 static int pyd1598_init(const struct device *dev)
 {
 	LOG_DBG("Initialising pyd1598");
@@ -73,6 +82,7 @@ static int pyd1598_attr_set(const struct device *dev, enum sensor_channel chan,
     return 0;
 }
 
+
 static int pyd1598_attr_get(const struct device *dev, enum sensor_channel chan,
 			    enum sensor_attribute attr, struct sensor_value *val)
 {
@@ -80,11 +90,14 @@ static int pyd1598_attr_get(const struct device *dev, enum sensor_channel chan,
     return 0;
 }
 
+
+// Get new data, tell if the sensor has been triggerd
 static int pyd1598_sample_fetch(const struct device *dev, enum sensor_channel chan)
 {
     LOG_DBG("pyd1598_sample_fetch");
     return 0;
 }
+
 
 static int pyd1598_channel_get(const struct device *dev, enum sensor_channel chan,
 			       struct sensor_value *val)

@@ -6,6 +6,10 @@ This repo have the goal to learn and show how to add a out of tree driver in zep
 * [ZEPHYR: Devicetree HOWTOs](https://docs.zephyrproject.org/latest/build/dts/howtos.html#get-devicetree-outputs)
 * [ZEPHYR: Sensor Shell Example](https://github.com/zephyrproject-rtos/zephyr/tree/main/samples/sensor/sensor_shell)
 * [devzone.nordicsemi](https://devzone.nordicsemi.com/f/nordic-q-a/97106/difference-between-zephyr_library_sources-and-target_sources-in-cmakelists-txt)
+* [sensor api sensor.h](https://github.com/zephyrproject-rtos/zephyr/blob/main/include/zephyr/drivers/sensor.h)
+* [spi bitbang driver](https://github.com/GeorgeGkinis/zephyr/blob/5f4f9ba793d6cb18762decaf2c2e62b9ba05ae33/drivers/spi/spi_bitbang.c)
+
+
 
 # STATUS:
 - [x] Make the device driver accesable in main.c
