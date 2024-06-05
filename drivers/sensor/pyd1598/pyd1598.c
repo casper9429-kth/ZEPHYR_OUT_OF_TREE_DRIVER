@@ -1,7 +1,6 @@
 #define DT_DRV_COMPAT excelitas_pyd1598
 
 #include <string.h>
-
 #include <zephyr/device.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/sensor.h>
@@ -12,7 +11,10 @@
 #include <zephyr/pm/device_runtime.h>
 #include <zephyr/sys/byteorder.h>
 #include <zephyr/kernel.h>
+#include <errno.h>
 
+
+// Stored in RAM, save all settings here that might be changed during runtime
 struct pyd1598_data {
     int test_1;
     int test_2;
@@ -20,6 +22,7 @@ struct pyd1598_data {
 	const struct pyd1598_config *cfg;
 };
 
+// Read only after configuration: https://docs.zephyrproject.org/latest/kernel/drivers/index.html
 struct pyd1598_config {
 	int instance;
 
@@ -33,6 +36,13 @@ struct pyd1598_config {
 
 // Spi bitbang driver:
 // https://github.com/GeorgeGkinis/zephyr/blob/5f4f9ba793d6cb18762decaf2c2e62b9ba05ae33/drivers/spi/spi_bitbang.c
+
+// Extend sensor_api thrrough the header file, I am not alone doing this: 
+// The reason is that the pyd1598 must get configured and all configurations must be applied at the same time
+// this is not the way intended by the sensor api, but it is the way the pyd1598 works
+
+// Error codes:
+// https://docs.zephyrproject.org/apidoc/latest/group__system__errno.html
 
 
 
@@ -60,7 +70,7 @@ LOG_MODULE_REGISTER(PYD1598, CONFIG_SENSOR_LOG_LEVEL);
  */
 
 
-// Initialize the sensor device, do not con
+// Initialize the sensor device, do not configure the sensor here
 static int pyd1598_init(const struct device *dev)
 {
 	LOG_DBG("Initialising pyd1598");
@@ -75,6 +85,9 @@ static int pyd1598_init(const struct device *dev)
 	return 0;
 }
 
+
+
+// Fill local buffer of desired configuration of the sensor
 static int pyd1598_attr_set(const struct device *dev, enum sensor_channel chan,
 			    enum sensor_attribute attr, const struct sensor_value *val)
 {
@@ -83,6 +96,13 @@ static int pyd1598_attr_set(const struct device *dev, enum sensor_channel chan,
 }
 
 
+// Apply the configuration to the sensor if all configurations are valid and set
+static int pyd1598_apply_config(const struct device *dev, struct pyd1598_config *config){
+
+}
+
+
+// Get the current configuration of the sensor for a given attribute
 static int pyd1598_attr_get(const struct device *dev, enum sensor_channel chan,
 			    enum sensor_attribute attr, struct sensor_value *val)
 {
@@ -91,14 +111,14 @@ static int pyd1598_attr_get(const struct device *dev, enum sensor_channel chan,
 }
 
 
-// Get new data, tell if the sensor has been triggerd
+// Save new data to local representation, tell if the sensor has been triggerd
 static int pyd1598_sample_fetch(const struct device *dev, enum sensor_channel chan)
 {
     LOG_DBG("pyd1598_sample_fetch");
     return 0;
 }
 
-
+// Get the current sensor value
 static int pyd1598_channel_get(const struct device *dev, enum sensor_channel chan,
 			       struct sensor_value *val)
 {
