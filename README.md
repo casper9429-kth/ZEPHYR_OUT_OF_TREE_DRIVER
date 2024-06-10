@@ -12,6 +12,9 @@ This repo have the goal to learn and show how to add a out of tree driver in zep
 * [pyd1598 c driver](https://github.com/Liquibit/Sub-IoT-Stack/blob/c9b42c96a89a375e61d918f98c33b0cd14b38903/stack/framework/hal/chips/PYD1598/PYD1598.c)
 
 
+# Online c playground:
+* [Online C Compiler](https://www.onlinegdb.com/online_c_compiler)
+
 # STATUS:
 - [x] Make the device driver accesable in main.c
 - [ ] Make the full PYD1598 device driver with bitbanging

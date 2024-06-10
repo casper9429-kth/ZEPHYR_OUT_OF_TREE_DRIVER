@@ -115,9 +115,9 @@ struct pyd1598_measurement {
 
 struct pyd1598_data {
     // Save all user set configurations here, get configuration from here if nothing else is specified
-    struct pyd1598_configuration sensor_desired_configuration; // Desired configuration of the sensor
+    struct pyd1598_configuration desired_configuration; // Desired configuration of the sensor
     // Get the actual configuration from the sensor, save it here if nothing else is specified
-    struct pyd1598_configuration sensor_actual_configuration;  // Actual configuration of the sensor
+    struct pyd1598_configuration actual_configuration;  // Actual configuration of the sensor
     // Is there any data in the actual configuration
     bool data_in_actual_configuration;  // data in actual configuration is valid
     // Save messurement data here
@@ -212,8 +212,75 @@ static int pyd1598_init(const struct device *dev)
 int pyd1598_push_config(const struct device *dev){
     LOG_DBG("pyd1598_push_config");
 
+    // Use k_busy_wait
+
+    // Interput key 
+    int key;
+    int ret;
+
+    // Lock interupts
+    key = irq_lock();
+
+    // beggining condition 
+    // Set both direct link and serial in to output value 0
+    ret = gpio_pin_configure_dt(&cfg->serial_in, GPIO_OUTPUT);
+    if (ret != 0) {
+        LOG_ERR("Failed to configure serial in GPIO pin %d", cfg->serial_in.pin);
+        return ret;
+    }
+    ret = gpio_pin_configure_dt(&cfg->direct_link, GPIO_OUTPUT);
+    if (ret != 0) {
+        LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
+        return ret;
+    }
+    gpio_pin_set_dt(&cfg->serial_in, 0);
+    gpio_pin_set_dt(&cfg->direct_link, 0);
+
+    // Allocate a reg_mask and bit
+    uint32_t reg_mask;
+    int bit;
+
+    // Sleep for 1 us.
+    k_busy_wait(1);
+
+    // Loop through all bits (25)
+    for (int i = 24; i >= 0; i--) {
+        reg_mask = (uint32_t)(1) << i;
+
+        // Get the bit
+        uint32_t raw_bits = data->desired_configuration.raw_bits;
+        bit = (raw_bits & reg_mask != 0 ? 1 : 0);
+    
+
+        // Bit shift to the right
+        gpio_pin_set_dt(&cfg->serial_in, 0);
+        k_busy_wait(1);
+        gpio_pin_set_dt(&cfg->serial_in, 1);
+        k_busy_wait(1);
+        gpio_pin_set_dt(&cfg->serial_in, bit);
+
+        //sleep for atleast 80 us, loop of nop commands, not exact time therefore sleep for 100 us
+        k_busy_wait(100);        
+    } 
+    // pull the pin low for 650 us
+    gpio_pin_set_dt(&cfg->direct_link, 0);
+    k_busy_wait(780);
 
 
+    // after condition, set both direct link and serial in to input
+    int ret1 = gpio_pin_configure_dt(&cfg->serial_in, GPIO_INPUT);
+    int ret2 = gpio_pin_configure_dt(&cfg->direct_link, GPIO_INPUT);
+    if (ret1 != 0) {
+        LOG_ERR("Failed to configure serial in GPIO pin %d", cfg->serial_in.pin);
+        return ret1;
+    }
+    if (ret2 != 0) {
+        LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
+        return ret2;
+    }
+
+    // Unlock interupts
+    irq_unlock(key);
 
 
     return 0;
@@ -603,7 +670,7 @@ int pyd1598_get_hpf_cut_off(const struct device *dev, enum pyd1598_hpf_cutoff *h
  * @return 0 if successful, negative errno code if failure.
 */
 int pyd1598_get_count_mode(const struct device *dev, enum pyd1598_count_mode *count_mode){
-    if (dev == NULL || dev->data == NULL || hpf_cut_off == NULL) {
+    if (dev == NULL || dev->data == NULL || count_mode == NULL) {
         return -EINVAL;
     }
 
