@@ -30,7 +30,7 @@ mail: casper9429@gmail.com
 //
 // * push: write from driver buffer to sensor - for all configurations
 // * fetch: read from sensor to driver buffer - for all configurations and sensor value
-// * get: read from driver buffer to user - one for each configuration and sensor value
+// * get: read from driver buffer to user - one for each configuration and sensor value: for messurments validate returned conf to actual conf for mode
 // * set: write from user to driver buffer - one for each configuration
 // * set_default: set default configuration to driver buffer
 // * reset: reset sensor in wake-up mode - not possible if not in wake-up mode
@@ -52,9 +52,8 @@ mail: casper9429@gmail.com
 //   - set_XXX
 //   - push
 // * Get sensor configuration
-//   - fetch 
+//   - fetch  - doubble check if actual is desired
 //   - get_all(desired)
-//   - get_all(actual)
 //   - compare
 
 
@@ -92,8 +91,6 @@ mail: casper9429@gmail.com
 LOG_MODULE_REGISTER(PYD1598, CONFIG_SENSOR_LOG_LEVEL);
 
 
-
-
 // Stored in RAM, save all settings here that might be changed during runtime
 struct pyd1598_configuration {
     uint32_t raw_bits;
@@ -118,9 +115,9 @@ struct pyd1598_measurement {
 
 struct pyd1598_data {
     // Save all user set configurations here, get configuration from here if nothing else is specified
-    struct pyd1598_configuration desired_configuration; // Desired configuration of the sensor
+    struct pyd1598_configuration sensor_desired_configuration; // Desired configuration of the sensor
     // Get the actual configuration from the sensor, save it here if nothing else is specified
-    struct pyd1598_configuration actual_configuration;  // Actual configuration of the sensor
+    struct pyd1598_configuration sensor_actual_configuration;  // Actual configuration of the sensor
     // Is there any data in the actual configuration
     bool data_in_actual_configuration;  // data in actual configuration is valid
     // Save messurement data here
@@ -143,17 +140,50 @@ struct pyd1598_config {
 static int pyd1598_init(const struct device *dev)
 {
 	LOG_DBG("Initialising pyd1598");
-	const struct pyd1598_config *cfg = dev->config;
+    if (dev == NULL || dev->data == NULL || dev->config == NULL) {
+        return -EINVAL;
+    }
+	const struct pyd1598_config *cfg = dev->config; 
+    struct pyd1598_data *data = dev->data; // Void pointer, needs to be casted
+
+
+    // Check if the GPIO pins are ready
+    if (!gpio_is_ready_dt(&cfg->serial_in)) {
+        LOG_ERR("Serial in GPIO pin %d is not ready", cfg->serial_in.pin);
+        return -ENODEV;
+    }
+
+    if (!gpio_is_ready_dt(&cfg->direct_link)) {
+        LOG_ERR("Direct link GPIO pin %d is not ready", cfg->direct_link.pin);
+        return -ENODEV;
+    }
+
+
+    // Configure the GPIO pins Serial in and Direct link
+    int ret = 0;
+    ret = gpio_pin_configure_dt(&cfg->serial_in, GPIO_INPUT | cfg->serial_in.dt_flags);
+    if (ret != 0) {
+        LOG_ERR("Failed to configure serial in GPIO pin %d", cfg->serial_in.pin);
+        return ret;
+    }
+
+    ret = gpio_pin_configure_dt(&cfg->direct_link, GPIO_INPUT | cfg->direct_link.dt_flags);
+    if (ret != 0) {
+        LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
+        return ret;
+    }
+
 
     // Make all configurations zero
-    memset(&(dev->data->desired_configuration), 0, sizeof(struct pyd1598_configuration));
-    memset(&(dev->data->actual_configuration), 0, sizeof(struct pyd1598_configuration));
+    memset(&(data->desired_configuration), 0, sizeof(struct pyd1598_configuration));
+    memset(&(data->actual_configuration), 0, sizeof(struct pyd1598_configuration));
     // Make all measurement data zero
-    memset(&(dev->data->measurement), 0, sizeof(struct pyd1598_measurement));
+    memset(&(data->measurement), 0, sizeof(struct pyd1598_measurement));
 
-    // Set reserved bits in desired configuration to make sure happy flow is possible 
+
+    // Set reserved bits in desired configuration, to allow for user to not set them even if encouraged 
     struct pyd1598_configuration *configuration;
-    configuration = &(dev->data->desired_configuration);
+    configuration = &(data->desired_configuration); 
     // 4-3 = 2 bits set to dec 2
     configuration->raw_bits = (configuration->raw_bits & ~((0x3<<3))) | (((uint32_t)2) << 3);
     // 1 = 1 bit set to dec 0
@@ -179,9 +209,16 @@ static int pyd1598_init(const struct device *dev)
  *
  * @return 0 if successful, negative errno code if failure.
  */
-static int pyd1598_push_config(const struct device *dev){
+int pyd1598_push_config(const struct device *dev){
     LOG_DBG("pyd1598_push_config");
+
+
+
+
+
     return 0;
+
+
 }
 
 /**
@@ -191,7 +228,7 @@ static int pyd1598_push_config(const struct device *dev){
  *
  * @return 0 if successful, negative errno code if failure.
  */
-static int pyd1598_fetch_config(const struct device *dev){
+int pyd1598_fetch(const struct device *dev){
     LOG_DBG("pyd1598_fetch_config");
     return 0;
 }
@@ -627,9 +664,6 @@ int pyd1598_set_default_config(const struct device *dev) {
 
 
 
-
-
-
 // Fill local buffer of desired configuration of the sensor
 static int pyd1598_attr_set(const struct device *dev, enum sensor_channel chan,
 			    enum sensor_attribute attr, const struct sensor_value *val)
@@ -637,9 +671,6 @@ static int pyd1598_attr_set(const struct device *dev, enum sensor_channel chan,
     LOG_DBG("pyd1598_attr_set");
     return 0;
 }
-
-
-
 
 
 // Apply the configuration to the sensor if all configurations are valid and set
