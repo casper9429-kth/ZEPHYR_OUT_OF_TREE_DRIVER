@@ -9,6 +9,36 @@ extern "C" {
 #include <zephyr/drivers/sensor.h>
 
 
+// enum of pyd1598 operation modes
+enum pyd1598_operation_mode {
+    PYD1598_FORCED_READOUT = 0,
+    PYD1598_WAKE_UP = 2
+};
+
+// enum of pyd1598 signal source
+enum pyd1598_signal_source {
+    PYD1598_PIR_BPF = 0,
+    PYD1598_PIR_LPF = 1,
+    PYD1598_TEMPERATURE_SENSOR = 3
+
+};
+
+enum pyd1598_hpf_cutoff {
+    PYD1598_HPF_CUTOFF_0_4HZ = 0,
+    PYD1598_HPF_CUTOFF_0_2HZ,
+};
+
+enum pyd1598_count_mode {
+    PYD1598_COUNT_SIGN_CHANGE = 0,
+    PYD1598_COUNT_ALL
+};
+
+enum pyd1598_configuration_location {
+    PYD1598_DESIRED_CONFIGURATION = 0,
+    PYD1598_ACTUAL_CONFIGURATION
+};
+
+
 // Fill in with functions when implemented
 
 #ifdef __cplusplus
