@@ -68,7 +68,7 @@ int pyd1598_get_count_mode(const struct device *dev,enum pyd1598_count_mode *mod
 int pyd1598_set_default_configuration(const struct device *dev);
 
 // interface functions
-int pyd1598_reset(const struct device *dev); 
+int pyd1598_reset(const struct device *dev);
 int pyd1598_reset_and_fetch(const struct device *dev);
 int pyd1598_poll_triggered(const struct device *dev,bool *triggered);
 int pyd1598_get_temperature_readout(const struct device *dev, uint16_t *adc_counts, bool *out_of_range);
