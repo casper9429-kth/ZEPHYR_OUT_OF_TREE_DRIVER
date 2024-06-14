@@ -134,11 +134,18 @@ LOG_MODULE_REGISTER(PYD1598, CONFIG_SENSOR_LOG_LEVEL);
 #define PYD1598_COUNT_MODE_SHIFT 0
 #define PYD1598_COUNT_MODE_MASK ((uint32_t)0b1)
 
+// Define macros for measurement
+#define PYD1598_OUT_OF_RANGE_MASK ((uint32_t)0b1)
+#define PYD1598_OUT_OF_RANGE_SHIFT 14
+
+#define PYD1598_ADC_COUNTS_MASK ((uint32_t)0b11111111111111)
+#define PYD1598_ADC_COUNTS_SHIFT 0
+
+
 
 struct pyd1598_data {
     uint32_t sensor_conf; // Desired configuration of the sensor
     uint32_t measurement; // Measurement data from the sensor
-
 };
 
 
@@ -213,7 +220,7 @@ static int pyd1598_init(const struct device *dev)
  *
  * @return 0 if successful, negative errno code if failure.
  */
-int pyd1598_push_config(const struct device *dev){
+int pyd1598_push(const struct device *dev){
     // Variables
     const struct pyd1598_config *cfg; // Get the configuration
     struct pyd1598_data *data; // pyd1598_data
@@ -258,7 +265,7 @@ int pyd1598_push_config(const struct device *dev){
     // Loop through all bits (25)
     for (int i = 24; i >= 0; i--) {
         reg_mask = (uint32_t)(1) << i;
-        bit = (sensor_conf & reg_mask != 0 ? 1 : 0);
+        bit = (sensor_conf & (reg_mask != 0) ? 1 : 0);
     
         gpio_pin_set_dt(&cfg->serial_in, 0);
         k_busy_wait(1);
@@ -484,6 +491,12 @@ int pyd1598_set_threshold(const struct device *dev, uint8_t threshold){
 }
 
 
+/**
+ * @brief Get pyd1598 threshold configuration from the internal buffer.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ */
 int pyd1598_get_threshold(const struct device *dev, uint8_t *threshold){
     // Variables
     struct pyd1598_data *data;
@@ -506,7 +519,7 @@ int pyd1598_get_threshold(const struct device *dev, uint8_t *threshold){
 }
 
 
-/*
+/** 
 * @brief Set pyd1598 blind time configuration to the internal buffer.
 *  
 * @param dev Pointer to the sensor device
@@ -1048,56 +1061,331 @@ int pyd1598_set_default_config(const struct device *dev) {
 }
 
 
-// Reset : Only possible if the sensor is in wake-up mode
+/**
+ * @brief Reset the sensor, only allowed in wake-up mode.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+int pyd1598_reset(const struct device *dev) {
+    // Variables
+    const struct pyd1598_config *cfg;
+    struct pyd1598_data *data;
+    enum pyd1598_operation_mode operation_mode;
+    int ret;
 
-// Has Triggered: Check if the sensor has been triggered only if the sensor is in wake-up mode
+    // Check if the device is null
+    LOG_DBG("pyd1598_reset");
+    if (dev == NULL || dev->data == NULL) {
+        return -EINVAL;
+    }
 
+    // Declare the variables
+    cfg = dev->config;
+    data = dev->data;
 
+    // Check if the sensor is in wake-up mode
+    pyd1598_get_operation_mode(dev, &operation_mode);
+    if (operation_mode != PYD1598_WAKE_UP) {
+        LOG_ERR("Sensor is not in wake-up mode, reset is only possible in wake-up mode");
+        return -EIO;
+    }
 
+    // Configure the direct link pin to output and push direct link pin low for at least 160 us + 20%
+    ret = gpio_pin_configure_dt(&cfg->direct_link, GPIO_OUTPUT_LOW);
+    if (ret != 0) {
+        LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
+        return ret;
+    }
+    k_busy_wait(192);
 
+    // Release the direct link pin
+    ret = gpio_pin_configure_dt(&cfg->direct_link, GPIO_INPUT);
+    if (ret != 0) {
+        LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
+        return ret;
+    }
 
-
-
-
-
-// Fill local buffer of desired configuration of the sensor
-static int pyd1598_attr_set(const struct device *dev, enum sensor_channel chan,
-			    enum sensor_attribute attr, const struct sensor_value *val)
-{
-    LOG_DBG("pyd1598_attr_set");
     return 0;
 }
 
 
-// Apply the configuration to the sensor if all configurations are valid and set
-static int pyd1598_apply_config(const struct device *dev, struct pyd1598_config *config){
+/**
+ * @brief Reset the sensor and fetch new data to the internal buffer, only allowed in wake-up mode.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+int pyd1598_reset_and_fetch(const struct device *dev) {
+    // Variables
+    int ret;
+    enum pyd1598_operation_mode operation_mode;
+    const struct pyd1598_config *cfg;
+    struct pyd1598_data *data;
 
-}
+    // Check if the device is null
+    LOG_DBG("pyd1598_reset_and_fetch");
+    if (dev == NULL || dev->data == NULL) {
+        return -EINVAL;
+    }
 
+    // Declare the variables
+    cfg = dev->config;
+    data = dev->data;
 
-// Get the current configuration of the sensor for a given attribute
-static int pyd1598_attr_get(const struct device *dev, enum sensor_channel chan,
-			    enum sensor_attribute attr, struct sensor_value *val)
-{
-    LOG_DBG("pyd1598_attr_get");
+    // Check if the sensor is in wake-up mode
+    pyd1598_get_operation_mode(dev, &operation_mode);
+    if (operation_mode != PYD1598_WAKE_UP) {
+        LOG_ERR("Sensor is not in wake-up mode, reset is only possible in wake-up mode");
+        return -EIO;
+    }
+
+    // Configure the direct link pin to output and push direct link pin low for at least 160 us + 20%
+    ret = gpio_pin_configure_dt(&cfg->direct_link, GPIO_OUTPUT_LOW);
+    if (ret != 0) {
+        LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
+        return ret;
+    }
+    k_busy_wait(192);
+
+    // Fetch the new data to the internal buffer
+    ret = pyd1598_fetch(dev);
+    if (ret != 0) {
+        LOG_ERR("Failed to fetch new data after reset");
+        return ret;
+    }
+
+    // Set the direct link pin to input, it might already be input
+    ret = gpio_pin_configure_dt(&cfg->direct_link, GPIO_INPUT);
+    if (ret != 0) {
+        LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
+        return ret;
+    }
+    
     return 0;
 }
 
 
-// Save new data to local representation, tell if the sensor has been triggerd
-static int pyd1598_sample_fetch(const struct device *dev, enum sensor_channel chan)
-{
-    LOG_DBG("pyd1598_sample_fetch");
+/**
+ * @brief Check if the sensor has triggered, only allowed in wake-up mode.
+ * 
+ * @param dev Pointer to the sensor device
+ * 
+ * @return 0 if successful, negative errno code if failure.
+*/
+int pyd1598_poll_triggered(const struct device *dev, bool *has_triggered){
+    // Variables
+    const struct pyd1598_config *cfg;
+    struct pyd1598_data *data;
+    enum pyd1598_operation_mode operation_mode;
+    int ret = 0;
+
+    // Check if the device is null
+    LOG_DBG("pyd1598_has_triggerd");
+    if (dev == NULL || dev->data == NULL || has_triggered == NULL) {
+        return -EINVAL;
+    }
+
+    // Declare the variables
+    cfg = dev->config;
+    data = dev->data;
+
+    // Check if the sensor is in wake-up mode
+    pyd1598_get_operation_mode(dev, &operation_mode);
+    if (operation_mode != PYD1598_WAKE_UP) {
+        LOG_ERR("Sensor is not in wake-up mode, polling triggered is only possible in wake-up mode");
+        return -EIO;
+    }
+    
+    // Set GPIO pin to input
+    ret = gpio_pin_configure_dt(&cfg->direct_link, GPIO_INPUT);
+    if (ret != 0) {
+        LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
+        return ret;
+    }
+
+    // Read the direct link pin and save the value to has_triggered
+    ret = gpio_pin_get_dt(&cfg->direct_link);
+    if (ret < 0) {
+        LOG_ERR("Failed to read direct link GPIO pin %d", cfg->direct_link.pin);
+        return ret;
+    }
+    *has_triggered = (bool)ret;
+
     return 0;
 }
 
-// Get the current sensor value
-static int pyd1598_channel_get(const struct device *dev, enum sensor_channel chan,
-			       struct sensor_value *val)
-{
-    LOG_DBG("pyd1598_channel_get");
+
+/**
+ * @brief Get the temperature readout from the sensor, sensor source must be set to temperature sensor.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param adc_counts Pointer to where the ADC counts value should be stored
+ * @param out_of_range Pointer to where the out of range value should be stored
+ * 
+ * @return 0 if successful, negative errno code if failure.
+ */
+int get_temperature_readout(const struct device *dev, uint16_t *adc_counts, bool *out_of_range){
+    // Variables
+    const struct pyd1598_config *cfg;
+    struct pyd1598_data *data;
+    uint32_t measurement;
+    enum pyd1598_signal_source signal_source;
+    int ret;
+    uint16_t adc_counts_internal;
+    bool out_of_range_internal;
+
+
+    // Check if the device is null
+    LOG_DBG("get_temperature_readout");
+    if (dev == NULL || dev->data == NULL || adc_counts == NULL || out_of_range == NULL) {
+        return -EINVAL;
+    }
+
+    // Declare the variables
+    cfg = dev->config;
+    data = dev->data;
+    measurement = data->measurement;
+
+    // Check that signal source is set to temperature sensor
+    ret = pyd1598_get_signal_source(dev, &signal_source);
+    if (ret != 0) {
+        LOG_ERR("Failed to get signal source");
+        return ret;
+    }
+    if (signal_source != PYD1598_TEMPERATURE_SENSOR) {
+        LOG_ERR("Signal source is not set to temperature sensor");
+        return -EIO;
+    }
+
+    // Get the measurement from the internal buffer
+    adc_counts_internal = (uint16_t)((measurement & (PYD1598_ADC_COUNTS_MASK << PYD1598_ADC_COUNTS_SHIFT)) >> PYD1598_ADC_COUNTS_SHIFT);
+
+    // Get the out of range from the internal buffer
+    out_of_range_internal = (bool)((measurement & (PYD1598_OUT_OF_RANGE_MASK << PYD1598_OUT_OF_RANGE_SHIFT)) >> PYD1598_OUT_OF_RANGE_SHIFT);
+
+    // Save the values to the pointers
+    *adc_counts = adc_counts_internal;
+    *out_of_range = out_of_range_internal;
+
     return 0;
 }
+
+
+
+/**
+ * @brief Get the Band Pass Filterd (BPF) readout from the sensor, sensor source must be set to PIR BPF.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param adc_counts Pointer to where the ADC counts value should be stored
+ * @param out_of_range Pointer to where the out of range value should be stored
+ * 
+ * @return 0 if successful, negative errno code if failure.
+ */
+int get_bpf_readout(const struct device *dev, int16_t *adc_counts, bool *out_of_range){
+    // Variables
+    const struct pyd1598_config *cfg;
+    struct pyd1598_data *data;
+    uint32_t measurement;
+    enum pyd1598_signal_source signal_source;
+    int ret;
+    int16_t adc_counts_internal;
+    bool out_of_range_internal;
+
+    // Check if the device is null
+    LOG_DBG("get_bpf_readout");
+    if (dev == NULL || dev->data == NULL || adc_counts == NULL || out_of_range == NULL) {
+        return -EINVAL;
+    }
+
+    // Declare the variables
+    cfg = dev->config;
+    data = dev->data;
+    measurement = data->measurement;
+
+    // Check that signal source is set to PIR BPF
+    ret = pyd1598_get_signal_source(dev, &signal_source);
+    if (ret != 0) {
+        LOG_ERR("Failed to get signal source");
+        return ret;
+    }
+    if (signal_source != PYD1598_PIR_BPF) {
+        LOG_ERR("Signal source is not set to PIR BPF");
+        return -EIO;
+    }
+
+    // Get the measurement from the internal buffer
+    adc_counts_internal = (int16_t)((measurement & (PYD1598_ADC_COUNTS_MASK << PYD1598_ADC_COUNTS_SHIFT)) >> PYD1598_ADC_COUNTS_SHIFT);
+
+    // Get the out of range from the internal buffer
+    out_of_range_internal = (bool)((measurement & (PYD1598_OUT_OF_RANGE_MASK << PYD1598_OUT_OF_RANGE_SHIFT)) >> PYD1598_OUT_OF_RANGE_SHIFT);
+
+    // Save the values to the pointers
+    *adc_counts = adc_counts_internal;
+    *out_of_range = out_of_range_internal;
+
+    return 0;
+}
+
+
+
+// get_lpf_readout: Get the Low Pass Filterd (LPF) readout from the sensor
+/**
+ * @brief Get the LPF readout from the sensor, sensor source must be set to PIR LPF.
+ * 
+ * @param dev Pointer to the sensor device
+ * @param adc_counts Pointer to where the ADC counts value should be stored
+ * @param out_of_range Pointer to where the out of range value should be stored
+ * 
+ * @return 0 if successful, negative errno code if failure.
+ */
+int get_lpf_readout(const struct device *dev, uint16_t *adc_counts, bool *out_of_range){
+    // Variables
+    const struct pyd1598_config *cfg;
+    struct pyd1598_data *data;
+    uint32_t measurement;
+    enum pyd1598_signal_source signal_source;
+    int ret;
+    uint16_t adc_counts_internal;
+    bool out_of_range_internal;
+
+    // Check if the device is null
+    LOG_DBG("get_lpf_readout");
+    if (dev == NULL || dev->data == NULL || adc_counts == NULL || out_of_range == NULL) {
+        return -EINVAL;
+    }
+
+    // Declare the variables
+    cfg = dev->config;
+    data = dev->data;
+    measurement = data->measurement;
+
+    // Check that signal source is set to PIR LPF
+    ret = pyd1598_get_signal_source(dev, &signal_source);
+    if (ret != 0) {
+        LOG_ERR("Failed to get signal source");
+        return ret;
+    }
+    if (signal_source != PYD1598_PIR_LPF) {
+        LOG_ERR("Signal source is not set to PIR LPF");
+        return -EIO;
+    }
+
+    // Get the measurement from the internal buffer
+    adc_counts_internal = (uint16_t)((measurement & (PYD1598_ADC_COUNTS_MASK << PYD1598_ADC_COUNTS_SHIFT)) >> PYD1598_ADC_COUNTS_SHIFT);
+
+    // Get the out of range from the internal buffer
+    out_of_range_internal = (bool)((measurement & (PYD1598_OUT_OF_RANGE_MASK << PYD1598_OUT_OF_RANGE_SHIFT)) >> PYD1598_OUT_OF_RANGE_SHIFT);
+
+    // Save the values to the pointers
+    *adc_counts = adc_counts_internal;
+    *out_of_range = out_of_range_internal;
+
+    return 0;
+}
+
 
 #define pyd1598_INIT(index)                                                      \
 	static struct pyd1598_data pyd1598_data_##index = {0};                        \
