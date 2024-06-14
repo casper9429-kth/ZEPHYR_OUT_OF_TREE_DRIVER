@@ -1227,7 +1227,7 @@ int pyd1598_poll_triggered(const struct device *dev, bool *has_triggered){
  * 
  * @return 0 if successful, negative errno code if failure.
  */
-int get_temperature_readout(const struct device *dev, uint16_t *adc_counts, bool *out_of_range){
+int pyd1598_get_temperature_readout(const struct device *dev, uint16_t *adc_counts, bool *out_of_range){
     // Variables
     const struct pyd1598_config *cfg;
     struct pyd1598_data *data;
@@ -1284,7 +1284,7 @@ int get_temperature_readout(const struct device *dev, uint16_t *adc_counts, bool
  * 
  * @return 0 if successful, negative errno code if failure.
  */
-int get_bpf_readout(const struct device *dev, int16_t *adc_counts, bool *out_of_range){
+int pyd1598_get_bpf_readout(const struct device *dev, int16_t *adc_counts, bool *out_of_range){
     // Variables
     const struct pyd1598_config *cfg;
     struct pyd1598_data *data;
@@ -1341,7 +1341,7 @@ int get_bpf_readout(const struct device *dev, int16_t *adc_counts, bool *out_of_
  * 
  * @return 0 if successful, negative errno code if failure.
  */
-int get_lpf_readout(const struct device *dev, uint16_t *adc_counts, bool *out_of_range){
+int pyd1598_get_lpf_readout(const struct device *dev, uint16_t *adc_counts, bool *out_of_range){
     // Variables
     const struct pyd1598_config *cfg;
     struct pyd1598_data *data;
