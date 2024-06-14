@@ -1048,6 +1048,10 @@ int pyd1598_set_default_config(const struct device *dev) {
 }
 
 
+// Reset : Only possible if the sensor is in wake-up mode
+
+// Has Triggered: Check if the sensor has been triggered only if the sensor is in wake-up mode
+
 
 
 

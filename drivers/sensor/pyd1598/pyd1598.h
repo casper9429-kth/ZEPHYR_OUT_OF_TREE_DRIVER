@@ -33,11 +33,6 @@ enum pyd1598_count_mode {
     PYD1598_COUNT_ALL
 };
 
-enum pyd1598_configuration_location {
-    PYD1598_DESIRED_CONFIGURATION = 0,
-    PYD1598_ACTUAL_CONFIGURATION
-};
-
 
 // Fill in with functions when implemented
 
