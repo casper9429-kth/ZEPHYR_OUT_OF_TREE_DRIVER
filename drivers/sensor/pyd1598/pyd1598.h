@@ -33,6 +33,8 @@ enum pyd1598_count_mode {
 };
 
 
+const int TEST = 22;
+
 // Functions
 // push and fetch functions are used to push and fetch data from the sensor to internal buffer of the driver
 int pyd1598_push(const struct device *dev);
@@ -65,7 +67,7 @@ int pyd1598_get_hpf_cutoff(const struct device *dev,enum pyd1598_hpf_cutoff *cut
 int pyd1598_set_count_mode(const struct device *dev,enum pyd1598_count_mode mode);
 int pyd1598_get_count_mode(const struct device *dev,enum pyd1598_count_mode *mode);
 
-int pyd1598_set_default_configuration(const struct device *dev);
+int pyd1598_set_default_config(const struct device *dev);
 
 // interface functions
 int pyd1598_reset(const struct device *dev);

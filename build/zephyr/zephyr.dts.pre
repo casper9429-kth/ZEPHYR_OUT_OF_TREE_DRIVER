@@ -1117,8 +1117,6 @@ arduino_spi: &spi3 {
  aliases {
   pir-master = &pyd1598_master;
   pir0 = &pyd1598_0;
-  pir1 = &pyd1598_1;
-  pir2 = &pyd1598_2;
  };
 
 
@@ -1131,20 +1129,6 @@ arduino_spi: &spi3 {
    status = "okay";
   };
 
-  pyd1598_1: pyd1598_1 {
-   compatible = "excelitas,pyd1598";
-   serial_in-gpios = <&gpio0 17 (0 << 0)>;
-   direct_link-gpios = <&gpio0 16 (0 << 0)>;
-   status = "okay";
-
-  };
-
-  pyd1598_2: pyd1598_2 {
-   compatible = "excelitas,pyd1598";
-   serial_in-gpios = <&gpio0 15 (0 << 0)>;
-   direct_link-gpios = <&gpio0 14 (0 << 0)>;
-   status = "okay";
-  };
  };
 };
 # 0 "<command-line>" 2

@@ -265,8 +265,7 @@ int pyd1598_push(const struct device *dev){
     // Loop through all bits (25)
     for (int i = 24; i >= 0; i--) {
         reg_mask = (uint32_t)(1) << i;
-        bit = (sensor_conf & (reg_mask != 0) ? 1 : 0);
-    
+        bit = ((sensor_conf & reg_mask) != 0) ? 1 : 0;    
         gpio_pin_set_dt(&cfg->serial_in, 0);
         k_busy_wait(1);
         gpio_pin_set_dt(&cfg->serial_in, 1);
@@ -354,17 +353,18 @@ int pyd1598_fetch(const struct device *dev){
             LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
             return ret;
         }
-        // force low for 200 ns - 2000ns
-        k_busy_wait(1);
-
+        // // force low for 200 ns - 2000ns
+        // Done by assembly
+        
         gpio_pin_set_dt(&cfg->direct_link, 1);
         if (ret != 0) {
             irq_unlock(key);
             LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
             return ret;
         }
-        // force high for 200 ns - 2000ns
-        k_busy_wait(1);
+        // // force high for 200 ns - 2000ns
+        // Done by assembly
+
 
         // release the pin, wait for less than 22 us => 5 us
         ret = gpio_pin_configure_dt(&cfg->direct_link, GPIO_INPUT); 
@@ -373,7 +373,7 @@ int pyd1598_fetch(const struct device *dev){
             LOG_ERR("Failed to configure direct link GPIO pin %d", cfg->direct_link.pin);
             return ret;
         }
-        k_busy_wait(5);
+        k_busy_wait(3);
 
         // read the bit, uint32_t because it might be shifted up to 25 bits, and code should not compile if not 32 bits
         bit = (uint32_t)(gpio_pin_get_dt(&cfg->direct_link));
@@ -406,6 +406,14 @@ int pyd1598_fetch(const struct device *dev){
 
     // Unlock irq once for all
     irq_unlock(key);
+
+    // for (int i = 24 ; i >= 0; i--) {
+    //     // Plot sensor_conf and sensor_conf_desired
+    //     LOG_INF("Bit %d| conf: %d| des: %d ", i, (sensor_conf & (1 << i)) >> i, (sensor_conf_desired & (1 << i)) >> i);
+    // }
+    LOG_INF("conf %d| des %d", sensor_conf, sensor_conf_desired);
+    LOG_INF("\n");
+
 
     // Check if bits_configuration is the same as bits_configuration_desired
     if (sensor_conf != sensor_conf_desired) {
@@ -878,7 +886,7 @@ int pyd1598_get_signal_source(const struct device *dev, enum pyd1598_signal_sour
  * 
  * @return 0 if successful, negative errno code if failure.
  */
-int pyd1598_set_hpf_cut_off(const struct device *dev, enum pyd1598_hpf_cutoff hpf_cut_off){
+int pyd1598_set_hpf_cutoff(const struct device *dev, enum pyd1598_hpf_cutoff hpf_cut_off){
     // Variables
     const struct pyd1598_config *cfg;
     struct pyd1598_data *data;
@@ -913,7 +921,7 @@ int pyd1598_set_hpf_cut_off(const struct device *dev, enum pyd1598_hpf_cutoff hp
  * 
  * @return 0 if successful, negative errno code if failure.
  */
-int pyd1598_get_hpf_cut_off(const struct device *dev, enum pyd1598_hpf_cutoff *hpf_cut_off){
+int pyd1598_get_hpf_cutoff(const struct device *dev, enum pyd1598_hpf_cutoff *hpf_cut_off){
     // Variables
     struct pyd1598_data *data;
     uint32_t sensor_conf;
@@ -1053,7 +1061,7 @@ int pyd1598_set_default_config(const struct device *dev) {
     pyd1598_set_window_time(dev, 0);
     pyd1598_set_operation_mode(dev, PYD1598_WAKE_UP);
     pyd1598_set_signal_source(dev, PYD1598_PIR_LPF);
-    pyd1598_set_hpf_cut_off(dev, PYD1598_HPF_CUTOFF_0_4HZ);
+    pyd1598_set_hpf_cutoff(dev, PYD1598_HPF_CUTOFF_0_4HZ);
     pyd1598_set_count_mode(dev, PYD1598_COUNT_ALL);
     pyd1598_set_reserved_bits(dev);
 

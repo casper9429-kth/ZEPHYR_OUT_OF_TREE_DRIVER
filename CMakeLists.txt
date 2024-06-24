@@ -14,3 +14,4 @@ target_sources(app PRIVATE
 )
 
 set(ZEPHYR_CPLUSPLUS ON)
+
