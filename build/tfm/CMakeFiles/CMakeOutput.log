@@ -1,5 +1,5 @@
 The target system is: Generic -  - cortex-m33+nodsp+nofp
-The host system is: Linux - 6.5.0-35-generic - x86_64
+The host system is: Linux - 6.5.0-41-generic - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: /home/casper/zephyr-sdk-0.16.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc 
 Build flags: -mcpu=cortex-m33+nodsp+nofp

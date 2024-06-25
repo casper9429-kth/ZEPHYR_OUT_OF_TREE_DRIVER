@@ -12,6 +12,11 @@
 #include <zephyr/devicetree.h>
 #include <zephyr/drivers/sensor.h>
 #include <pyd1598.h>
+#include <errno.h> // std error codes : https://github.com/zephyrproject-rtos/zephyr/blob/main/lib/libc/minimal/include/errno.h
+#include <stdint.h>
+#include <stdbool.h>
+#include <float.h>
+
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 
@@ -25,75 +30,81 @@ int main(void)
 {
 
     const struct device *devices[NUM_PYD1598_OKAY] = {DT_FOREACH_CHILD_STATUS_OKAY_SEP(DT_ALIAS(pir_master), DEVICE_DT_GET,(,))};
+    // * - threshold: 31 (range 0-255)
+    // * - blind_time: 6 (0.5 s + 0.5 s * blind_time, range 0-15)
+    // * - pulse_counter: 0 (1 + pulse_counter, range 0-3)
+    // * - window_time: 0 (2s + 2s * window_time, range 0-3)
+    // * - operation_mode: 2 (0: Forced Readout, 1: Interrupt Readout, 2: Wake-up Mode): Only Wake-up Mode is supported
+    // * - signal_source: 1 (0: PIR(BRF), 1: PIR(LPF), 2: Not Allowed, 3: Temperature Sensor)
+    // * - HPF_Cut_Off: 0 (0: 0.4 Hz, 1: 0.2 Hz)
+    // * - Count_Mode: 1 (0: count with (0), or without (1) BPF sign change)
 
-    const struct device *dev_0 = devices[0];//DEVICE_DT_GET(DT_ALIAS(pir0));
-    const struct device *dev_1 = devices[1];//DEVICE_DT_GET(DT_ALIAS(pir1));
-    const struct device *dev_2 = devices[2];//DEVICE_DT_GET(DT_ALIAS(pir2));
 
-    if (!dev_0) {
-        LOG_ERR("Failed to get binding for PYD1598_0");
-        return 0;
+    int ret = 1;
+    while (ret != 0)
+    {
+        ret = pyd1598_set_default_config(devices[0]);
+        if (ret != 0)
+        {
+            LOG_INF("pyd1598_set_default_configuration: %d", ret);
+        }
+        // Set mode 
+        ret = pyd1598_set_operation_mode(devices[0], PYD1598_FORCED_READOUT);
+        if (ret != 0)
+        {
+            LOG_INF("pyd1598_get_operation_mode: %d", ret);
+        }
     }
-    if (!dev_1) {
-        LOG_ERR("Failed to get binding for PYD1598_1");
-        return 0;
+
+
+    // Push the configuration to the sensor
+    ret = pyd1598_push(devices[0]);
+    if (ret != 0)
+    {
+        LOG_INF("pyd1598_push: %d", ret);
     }
-    if (!dev_2) {
-        LOG_ERR("Failed to get binding for PYD1598_2");
-        return 0;
+
+
+    // Create a float
+    float success = 0.5;
+
+    while (true)
+    {
+    
+
+
+
+        // Fetch the data from the sensor
+        ret = pyd1598_fetch(devices[0]);
+        if (ret != 0)
+        {
+            success = success*0.99;
+        }
+        else
+        {
+        success = success*0.99 + 0.01;
+        }
+
+
+        // Sleep for 10 ms
+        k_msleep(10);
+
+        // make float to string
+        char success_str[10];
+        snprintf(success_str, 10, "%f", success);
+        LOG_INF("Success: %s", success_str);
+
+
+
+
+
+
+
     }
 
-    while (1) {
-        struct sensor_value val;
-        int ret;
 
-        // Fetch sample from the sensor
-        ret = sensor_sample_fetch(dev_0);
-        if (ret) {
-            LOG_ERR("Failed to fetch sample from PYD1598_0");
-            continue;
-        }
 
-        // Get sensor value
-        ret = sensor_channel_get(dev_0, SENSOR_CHAN_ALL, &val);
-        if (ret) {
-            LOG_ERR("Failed to get sensor value from PYD1598_0");
-            continue;
-        }
 
-        LOG_INF("PYD1598_0: val = %d.%06d", val.val1, val.val2);
 
-        // Similarly, you can fetch and get values from dev_1 and dev_2
-        ret = sensor_sample_fetch(dev_1);
-        if (ret) {
-            LOG_ERR("Failed to fetch sample from PYD1598_1");
-            continue;
-        }
-
-        ret = sensor_channel_get(dev_1, SENSOR_CHAN_ALL, &val);
-        if (ret) {
-            LOG_ERR("Failed to get sensor value from PYD1598_1");
-            continue;
-        }
-
-        LOG_INF("PYD1598_1: val = %d.%06d", val.val1, val.val2);
-
-        ret = sensor_sample_fetch(dev_2);
-        if (ret) {
-            LOG_ERR("Failed to fetch sample from PYD1598_2");
-            continue;
-        }
-
-        ret = sensor_channel_get(dev_2, SENSOR_CHAN_ALL, &val);
-        if (ret) {
-            LOG_ERR("Failed to get sensor value from PYD1598_2");
-            continue;
-        }
-
-        LOG_INF("PYD1598_2: val = %d.%06d", val.val1, val.val2);
-
-        // Sleep for a while before fetching again
-        k_sleep(K_MSEC(1000));
-    }
     return 0;
 }
